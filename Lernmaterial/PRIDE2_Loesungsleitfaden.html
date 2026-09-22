@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>PRIDE 2 — Lösungsleitfaden</title>
+<style>
+  :root {
+    --ink: #1a1f2b; --sub: #5a6474; --line: #dfe3ea;
+    --accent: #2b3a55;
+    --t1-bg: #f8cbcb; --t1-fg: #7a1f1f;
+    --t2-bg: #fdebb1; --t2-fg: #7a5a10;
+    --t3-bg: #c9efd1; --t3-fg: #1f6b34;
+    --found: #2f8f4e; --missing: #c23b3b; --partial: #b07a12;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Calibri, Helvetica, Arial, sans-serif;
+    color: var(--ink); max-width: 940px; margin: 0 auto; padding: 40px 32px 80px;
+    line-height: 1.5; font-size: 14.5px;
+  }
+  .titlepage { text-align: center; padding: 40px 0 20px; border-bottom: 3px solid var(--accent); margin-bottom: 32px; }
+  .titlepage h1 { font-size: 32px; margin: 0 0 8px; color: var(--accent); }
+  .titlepage .subtitle { font-size: 17px; color: var(--sub); margin: 0 0 6px; }
+  .titlepage .meta { font-size: 13px; color: var(--sub); font-style: italic; margin-top: 14px; }
+
+  h1 { font-size: 21px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 6px; margin-top: 40px; }
+  h2 { font-size: 17px; color: var(--accent); margin-top: 26px; }
+  h3 { font-size: 14.5px; color: var(--accent); margin-top: 18px; }
+  section.chapter { page-break-before: always; }
+  section.chapter:first-of-type { page-break-before: auto; }
+
+  p { margin: 7px 0; }
+  ul, ol { margin: 6px 0; padding-left: 20px; }
+  li { margin: 3px 0; }
+  code { background: #eef1f7; padding: 1px 5px; border-radius: 4px; font-size: 12.5px; }
+
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 10.5px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+  .badge.t1 { background: var(--t1-bg); color: var(--t1-fg); }
+  .badge.t2 { background: var(--t2-bg); color: var(--t2-fg); }
+  .badge.t3 { background: var(--t3-bg); color: var(--t3-fg); }
+
+  .qa { border: 1px solid var(--line); border-left: 5px solid var(--sub); border-radius: 8px; padding: 12px 16px; margin: 14px 0; page-break-inside: avoid; background: #fafbfd; }
+  .qa.found { border-left-color: var(--found); }
+  .qa.partial { border-left-color: var(--partial); }
+  .qa.missing { border-left-color: var(--missing); background: #fff6f6; }
+  .qhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .qtext { font-weight: 700; font-size: 14.5px; }
+  .qyears { font-size: 11.5px; color: var(--sub); margin: 3px 0 8px; }
+  .answer ul { margin-top: 4px; }
+  .answer li { font-size: 13.5px; }
+  .source { font-size: 11.5px; color: var(--sub); font-style: italic; margin-top: 6px; }
+  .missing-note { color: var(--missing); font-weight: 600; font-size: 13px; }
+
+  .assessment { font-weight: 600; padding: 5px 10px; border-radius: 6px; display: inline-block; margin: 4px 0 8px; font-size: 12.5px; }
+  .assessment.high { background: var(--t1-bg); color: var(--t1-fg); }
+  .assessment.mid { background: var(--t2-bg); color: var(--t2-fg); }
+
+  .chapter-missing-notice { background: #fff6f6; border: 1px solid var(--missing); border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 16px; }
+
+  .strategy li { margin: 8px 0; font-size: 13.5px; }
+  .goodluck { text-align: center; font-weight: 700; font-size: 17px; margin-top: 22px; }
+  .note { font-size: 12.5px; color: var(--sub); font-style: italic; }
+
+  @media print { body { padding: 0 24px; max-width: 100%; } }
+  @page { margin: 16mm 14mm; }
+</style>
+</head>
+<body>
+
+  <div class="titlepage">
+    <h1>PRIDE 2 — Lösungsleitfaden</h1>
+    <p class="subtitle">Produktionsprozesse in der Elektronik — Antworten aus den offiziellen SS26-Vorlesungsfolien</p>
+    <p class="note">Ergänzung zum Lernleitfaden: für jede wahrscheinliche Klausurfrage die passende Antwort direkt aus den Materialien, mit Folienquelle. Nicht sicher belegte Antworten sind klar markiert.</p>
+    <p class="meta">Stand: September 2026</p>
+  </div>
+
+  <section>
+    <h2>So funktioniert dieses Dokument</h2>
+    <p>Zu jeder Frage aus dem Lernleitfaden wurde die dazugehörige Vorlesungsfolie systematisch durchsucht. Grüner Rand = Antwort mit Folienquelle belegt. Oranger Rand = Antwort teilweise/logisch abgeleitet, nicht wörtlich belegt (klar gekennzeichnet). Roter Rand = keine gesicherte Antwort gefunden — hier lohnt sich ein Blick ins Original-Skript oder in die Vorlesungsmitschrift.</p>
+  </section>
+
+  
+  <section class="chapter">
+    <h1>1. Entwicklungsumgebung in der Elektronikproduktion</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">CAD/CAM-Verfahrenskette chronologisch nennen (Aufgabe je Schritt bzw. Unterschied zu rein mechanischer Baugruppe)</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2021, 2022, 2024 (4x)</div>
+    <div class="answer">
+      <ul><li>Idee → Schaltplanentwurf (CAE): logische Definition der Schaltung, Gehäuseformen festlegen, Electrical-Rule-Check, Netzliste erstellen (+ Simulation)</li><li>→ Layoutentwurf (CAD): Leiterplattenkontur, Platzieren der Bauelemente, Designrichtlinien, Routing, Design-Rule-Check</li><li>→ Fertigungsplanung (CAP): Konstruktionsdaten Leiterplatte, Bestückprogramme, Materialdisposition, Prüfadaptererstellung</li><li>→ Fertigung (CAM): Leiterplattenfertigung, Bestückung, Löten, Test → Produkt</li></ul>
+      <p class="source">Quelle: Folie 14</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 grundlegende Aufgaben einer Leiterplatte nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2021, 2023, 2024 (4x)</div>
+    <div class="answer">
+      <ul><li>Elektrische Isolierung der Leiterzüge (Substratmaterial)</li><li>Mechanische Fixierung der Bauelemente (Substratmaterial)</li><li>Elektrische Kontaktierung der Bauelemente (Leiterbild, Durchkontaktierungen)</li></ul>
+      <p class="source">Quelle: Folie 5</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Prozessschritte zur Herstellung einer zweiseitig mischbestückten Leiterplatte (THT+SMT) + ein Vorteil THT ggü. SMT</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2023, 2025 (Sept.) (3x)</div>
+    <div class="answer">
+      <ul><li>SMD-Reflow (Oberseite): Pastenauftrag → SMD-Bestückung → optische Kontrolle → Reflowlöten → (Reinigen)</li><li>THD-Bestückung (bedrahtete Bauteile setzen)</li><li>Wenden</li><li>SMD-Welle (Unterseite): Kleber auftragen → Bestückung → Härtung → Wenden → Wellenlöten (lötet SMD-Unterseite + THT-Anschlüsse gemeinsam)</li><li>Reinigung und Test</li></ul>
+      <p class="source">Quelle: Folie 7 — Vorteil THT ggü. SMT wurde auf keiner gesichteten Folie explizit benannt (nicht sicher gefunden)</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">4 Beispiele für Design-Rules beim Leiterplattenlayout nennen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Leiterbahnbreite</li><li>Leiterbahnabstand</li><li>Bauelementabstand</li><li>Durchmesser Via</li><li>(weitere: Leiterplattenkontur, Arbeitsbereich, Bauelementüberlappung, Raster, Abstand zu Kontur, Via-Abstände)</li></ul>
+      <p class="source">Quelle: Folie 24</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Entwicklungsschritte Produktidee→Produkt (Grafik Elektronik-/Mechanikpfad beschriften) + Datenaustausch</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2024 (2x)</div>
+    <div class="answer">
+      <ul><li>Elektronik-Pfad: Produktidee → CAE (Logikentwicklung) → CAD (Layout) → CAP (Fertigungsplanung) → CAM (Fertigung) → Produkt</li><li>Mechanik-Pfad: Produktidee → CAD (Konstruktion) → CAE (FEM/Simulation) → CAP → CAM → Produkt (CAD/CAE-Reihenfolge vertauscht ggü. Elektronik!)</li><li>Datenaustausch Mechanik-CAD ↔ Elektronik-CAD: Einbauraum/-geometrie über DXF und STEP; Komponenten-Bibliothek ↔ Komponentenliste</li></ul>
+      <p class="source">Quelle: Folie 15</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">4 CAD-Datentypen für Bauelementbibliotheken nennen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019 (1x)</div>
+    <div class="answer">
+      <ul><li>Geometrie der Anschlussflächen (Pads)</li><li>Geometrie der Lötstopplacköffnungen</li><li>Geometrie der Öffnungen in der Druckschablone für Lotpastendruck</li><li>Bauelement-Mittelpunkt</li><li>(zusätzlich: Dokumentation — BE-Größe, Name, Wert)</li></ul>
+      <p class="source">Quelle: Folie 19 — Folie listet insgesamt 5 Datentypen</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Routing-Algorithmus nennen und an Gitter-Grafik durchführen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022 (1x)</div>
+    <div class="answer">
+      <ul><li>LEE-Algorithmus (Auto-Routing):</li><li>1. Markieren von Start- und Zielpunkt</li><li>2. Ausbreitung einer konzentrischen Welle vom Startpunkt bis Zielpunkt erreicht oder kein freies Rasterelement mehr vorhanden</li><li>3. Rückverfolgung des Weges vom Ziel- zum Startpunkt</li><li>4. Löschen aller von der Welle benutzten Rasterelemente, Markierung des gefundenen Wegs</li></ul>
+      <p class="source">Quelle: Folie 23</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">2 geometrische Parameter für 3D-Schaltungsträger-Design (zusätzlich zu Design-Rules)</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022 (1x)</div>
+    <div class="answer">
+      <ul><li>Wandhöhe</li><li>Neigungswinkel</li><li>(zusätzlich prozessbezogen: Randabstand Bestücken/Dispensen/Löten, Abstand zur Wärmequelle)</li></ul>
+      <p class="source">Quelle: Folie 37</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Wesentliche Prozessschritte SMD-Löten: Reflow vs. Welle gegenüberstellen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2025 (April) (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Reflow (SMD-Oberseite): Lotpaste im Schablonendruck auftragen → Bestücken → optische Kontrolle → Reflowlöten (z.B. Konvektions-Lötofen) → (Reinigen)</li><li>Welle (SMD-Welle, Unterseite bei Mischbestückung): Kleber siebdrucken → SMD-Bestückung → Kleber-Härtung → Wenden → Wellenlöten (lötet SMD-Unterseite gemeinsam mit THT-Anschlüssen)</li></ul>
+      <p class="source">Quelle: Folien 6–7, 9–10</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>2. Leiterplattenfertigung</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Substratmaterial-Auswahl bei erhöhter thermischer Belastung: 3 Materialkennwerte nennen + Wirkung beschreiben</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2021, 2024 (3x)</div>
+    <div class="answer">
+      <ul><li>Thermischer Ausdehnungskoeffizient α (CTE, x-y- und z-Richtung): bei CTE-Mismatch zu Bauelement entstehen bei Temperaturwechseln Scherkräfte → Zuverlässigkeitsprobleme an Lötstellen</li><li>Glasübergangstemperatur Tg: Übergang glasartig-spröde → zähelastisch; Forderung: Dauerbetriebstemperatur &lt; Tg</li><li>Wärmeleitfähigkeit λ: bei hoher thermischer Belastung hohe Wärmeabfuhr nötig → hohe λ gefordert</li><li>(zusätzlich genannt: T260/T288 Delaminationszeit, Zersetzungstemperatur Td, Permittivität)</li></ul>
+      <p class="source">Quelle: Folie 8</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Herstellungsprozess der Leiterplatte im Subtraktivverfahren in Stichworten</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2022, 2025 (April) (3x)</div>
+    <div class="answer">
+      <ul><li>Kupferkaschiertes Substrat</li><li>→ Fotoresist auftragen</li><li>→ Fotoresist belichten und entwickeln</li><li>→ Kupferätzen (ungeschützte Bereiche)</li><li>→ Fotoresist entfernen</li><li>→ fertiges Leiterbild</li></ul>
+      <p class="source">Quelle: Folie 23</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Herstellungsprozess der Leiterplatte im Additivverfahren in Stichworten</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Grundsubstrat (ohne Kupfer)</li><li>→ Fotoresist auftragen</li><li>→ Fotoresist belichten und entwickeln</li><li>→ chemisch (stromlos) mit Kupfer beschichten (nur freie Stellen)</li><li>→ Fotoresist entfernen</li><li>→ fertiges Leiterbild</li></ul>
+      <p class="source">Quelle: Folie 23</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Galvanische Metallabscheidung skizzieren, Einsatzzweck + Vergleich Abscheidungsraten zu chemischer Abscheidung</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2025 (Sept.) (2x)</div>
+    <div class="answer">
+      <ul><li>Prinzip: Abscheidung gelöster Metallionen als elementares Metall an der Kathode (= Leiterplatte): Meⁿ⁺ + n e⁻ → Me; abgeschiedene Menge proportional zur Strommenge</li><li>Einsatzzweck: Verstärkung dünner, zuvor stromlos (chemisch) erzeugter Metallschichten</li><li>Abscheidungsraten: galvanisch Cu 25–30 µm/h (2,5–3 A/dm²), Sn 60 µm/h — deutlich schneller als chemische Abscheidung (nur 1–2 µm/h Cu)</li></ul>
+      <p class="source">Quelle: Folie 27–28</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">2 Substratmaterial-Werkstoffgruppen nennen + je 2 Beispielmaterialien</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020 (1x, historisch häufig vor 2019)</div>
+    <div class="answer">
+      <ul><li>Anorganische Werkstoffe — keramisch: Aluminiumoxid, Aluminiumnitrid (auch Siliziumcarbid, LTCC/HTCC); daneben metallische Werkstoffe (Al, Stahl mit Isolationsüberzug)</li><li>Organische Werkstoffe — duroplastisch: FR4 (Epoxidharz-Glasgewebe), Polyimid (auch FR2, FR3); daneben thermoplastische Werkstoffe (PET, PA, PPS, PEEK, LCP)</li></ul>
+      <p class="source">Quelle: Folie 7</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Herstellung von Kupferfolien zum Kaschieren skizzieren</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020 (1x)</div>
+    <div class="answer">
+      <ul><li>Galvanische Abscheidung von Kupfer: Kupferelektrolyt zwischen Anode und rotierender Kathodentrommel; Kupferionen wandern zur Kathodentrommel und lagern sich als metallisches Kupfer ab, Folie wird kontinuierlich aufgewickelt</li><li>Typische Foliendicken: 3; 5; 9; 12; 17,5; 35; 70–210 µm</li><li>zusätzlich Passivierung gegen Oxidation/Kontaktkorrosion</li></ul>
+      <p class="source">Quelle: Folie 15</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Heißverzinnung: relevante Eigenschaften für Folgeprozesse; Vergleich chemische vs. heißverzinnte Zinnpassivierung</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Heißverzinnung (HAL, Hot Air Levelling): sehr gute Lötbarkeit, NICHT bondbar, günstig, aber hohe Schichtdickenschwankung</li><li>Chemisch Zinn (Vergleich): sehr gute Planarität, gute Lötbarkeit, ebenfalls nicht bondbar, aber niedrige Abscheiderate/geringe Schichtdicke (≥1 µm) → eingeschränkte Lagerfähigkeit</li><li>→ Hauptunterschied: HAL schlechtere Planarität, aber bessere Lagerfähigkeit; Chemisch Zinn umgekehrt</li></ul>
+      <p class="source">Quelle: Folie 31</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Symmetrischer vs. asymmetrischer Lagenaufbau skizzieren; Einfluss auf Maßhaltigkeit beim Löten</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ Nur Grafik mit den Begriffen „symmetrisch“/„asymmetrisch“ (Multilayer-Kontext) vorhanden — keine erklärende Textaussage zum Einfluss auf die Maßhaltigkeit beim Löten auf der Folie (Folie 33).</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Eutektisches Bonden: Prinzip + beispielhafter Ablauf</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019 (1x)</div>
+    <div class="answer">
+      <ul><li>DCB-Verfahren (Direct Copper Bonding): Gas-Metall-Eutektikum verbindet dicke Kupferfolie mit keramischem Substrat</li><li>Ablauf: In Atmosphäre mit ca. 0,4 Gew.-% Sauerstoff bildet sich auf der Cu-Folie eine dünne Cu-Oxid-Schicht (Cu2O, CuO); das Eutektikum hat abgesenkten Schmelzpunkt von 1065°C (statt ca. 1085°C bei reinem Cu) und verbindet Cu-Folie mit Keramik; es entsteht Kupfer-Aluminiumspinell: Cu2O + Al2O3 ⇌ CuAl2O4</li><li>auch mit Aluminiumnitrid-Keramiken möglich</li></ul>
+      <p class="source">Quelle: Folie 39</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>3. Bauelementtechnologie</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Funktionen eines Bauelementgehäuses (Package) nennen (3 oder 5)</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2022, 2024 (3x)</div>
+    <div class="answer">
+      <ul><li>Herstellen einer Anschlussstruktur zur automatisierten Weiterverarbeitung</li><li>Schutz vor Umwelteinflüssen (Feuchte, Strahlung, mechanische Belastung)</li><li>Vereinfachung der Handhabung → Automatisierung</li><li>Optische Eigenschaften (z.B. Linse bei LEDs)</li><li>Kennzeichnung (Aufdruck, Nuten für Polarität)</li><li>(weitere: Anschlüsse zur mech./el. Kontaktierung, definierte Öffnung z.B. für Drucksensoren, Abführung Verlustwärme)</li></ul>
+      <p class="source">Quelle: Folie 16 — Folie zeigt 8 Funktionen insgesamt, je nach Klausurvariante 3 oder 5 auswählen</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Kontaktierungsverfahren für Flip-Chip im BGA-Gehäuse nennen/skizzieren</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2021, 2025 (April) (3x)</div>
+    <div class="answer">
+      <ul><li>Über Lotkugeln (Bumps)</li><li>Über Tape-Automated-Bonding (flexible Leiterbahn)</li><li>Über elektrisch leitfähigen Klebstoff (Leitklebstoff + Anschlusshöcker)</li></ul>
+      <p class="source">Quelle: Folie 20</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Anwendungsfälle für bedrahtete Bauelemente + je ein konkretes Beispiel</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2022, 2024 (3x)</div>
+    <div class="answer">
+      <ul><li>Besondere mechanische Belastung der Lötstelle — Beispiel: Steckerleisten (auch schwere BE wie Transformatoren)</li><li>Manuelle Montage — Beispiel: Prototypen/Kleinserien</li><li>Wiederholte Montage/Demontage mit Stecksockel — Beispiel: Prozessoren/Speicherbausteine</li></ul>
+      <p class="source">Quelle: Folie 9</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Bauteilcode interpretieren (z.B. CC0805) — meist gepaart mit obiger Frage</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2024 (2x)</div>
+    <div class="answer">
+      <ul><li>CC = Chip Capacitor (Bauform „CHIP“)</li><li>Ziffern = Abmessung in 1/100 Zoll: 08 = 0,08 Zoll Länge, 05 = 0,05 Zoll Breite → metrisch 2,0 mm × 1,2 mm</li><li>(I) kennzeichnet „Imperial“</li></ul>
+      <p class="source">Quelle: Folien 11, 14</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Prozessschritte der SMT-Montage nennen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2021 (2x)</div>
+    <div class="answer">
+      <ul><li>Lotpaste/Verbindungsmedium auftragen (Schablonen-/Siebdruck, Dispensen)</li><li>Bestücken der Bauelemente (manuell/automatisch)</li><li>Reflowlöten (Konvektions-, Dampfphasen-, Infrarotlöten)</li></ul>
+      <p class="source">Quelle: Folie 6</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">BGA vs. QFP: Abkürzungen, je 2 Vor-/Nachteile</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2025 (April) (1x, historisch Klassiker)</div>
+    <div class="answer">
+      <ul><li>BGA = Ball Grid Array, QFP = Quad Flat Package</li><li>Vorteile BGA ggü. QFP: hohe Anschlusszahl, großes Anschlussraster (beherrschbarer Prozess)</li><li>Nachteile BGA ggü. QFP: aufwendigere Temperaturprofilierung, Inspektion nur mit Röntgenanlage möglich</li></ul>
+      <p class="source">Quelle: Folie 19</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">2 Varianten Chip-On-Board-Technologie skizzieren</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019 (1x)</div>
+    <div class="answer">
+      <ul><li>Chip and Wire (Klebstoff + Bond-Wire auf Leiterplatte)</li><li>Flip Chip (Chip kopfüber, Underfill, Anschluss direkt auf Leiterbahn)</li></ul>
+      <p class="source">Quelle: Folie 22</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Gehaust vs. ungehaust: IC für HF-Signal wählen + thermische Anbindung begründen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021 (1x)</div>
+    <div class="answer"><p class="missing-note">❌ Gehaust vs. ungehaust wird nicht explizit mit HF-Signal-Anwendung/thermischer Anbindung gegenübergestellt. Nur indirekt über Chip-on-Board-Vorteile ableitbar: geringer Flächenbedarf, sehr gute thermische Anbindung, kurze Latenzzeiten (Folie 22) — als vollständige Antwort nicht gesichert.</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">7 Fertigungsschritte IC-Packaging ab prozessiertem Wafer nennen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Sägen</li><li>Chip-Montage (Lead-Frame, Interposer, …)</li><li>Kontaktierung (Bonden, Leitkleben, Löten, …)</li><li>Verkapselung (Umspritzen, Metallgehäuse, …)</li><li>Ausformung der Anschlüsse</li><li>Beschriftung/Markierung</li><li>Vereinzelung</li></ul>
+      <p class="source">Quelle: Folie 15</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Bauelement-Skizze beschriften (Bauteiltyp erkennen)</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>6 Kategorien nach elektrischer Funktionalität: passive, aktive, lineare, nichtlineare, diskrete, integrierte Bauelemente</li><li>Bauteil-Abkürzungen/Bezeichnungen: CHIP, MELF (Metal Electrode Face), SOD (Small Outline Diode), V-CHIP, DIP SMD, SO, SOJ, TSOP/VSOP, PLCC, QFP, BGA, COB</li></ul>
+      <p class="source">Quelle: Folien 4, 11–13</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">6 Kategorien elektronischer Bauelemente nach Funktion nennen; Abkürzung+Bezeichnung von Bauteilen (z.B. MELF)</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2025 (Sept.) (1x, aktuell)</div>
+    <div class="answer"><p class="missing-note">❌ Keine Quelle in den vorliegenden Unterlagen gefunden.</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>4. Auftrag der Verbindungsmedien</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Schablonendruckverfahren skizzieren/beschreiben + 3 Prozesseinflussgrößen nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2023, 2025 (April) (3x)</div>
+    <div class="answer">
+      <ul><li>Metallschablone wird ohne Abstand auf die Leiterplatte/Pads aufgesetzt</li><li>Rakel (Diamantrakel) fährt mit Rakeldruck in Rakelarbeitsrichtung über die Schablone, drückt Lotpaste durch die Öffnungen auf die Pads</li><li>nach Abheben der Schablone verbleibt das Lotpastendepot auf den Pads</li><li>3 Prozesseinflussgrößen: Rakelgeschwindigkeit (5–75 mm/s), Rakeldruck (z.B. 2,75 N/cm), Rakelwinkel (45°–60°); (weitere: Schablonendicke 50–200 µm, Öffnungs-/Aspektverhältnis, Absprung der Schablone 0–0,1 mm)</li></ul>
+      <p class="source">Quelle: Folie 23, 28</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Lotpastentyp anhand gegebener Apertur-Maße wählen (Daumenregel, Tabelle)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2025 (Sept.) (2x)</div>
+    <div class="answer">
+      <ul><li>Klassifizierung nach J-STD-005 (IPC-TM-650) nach Pulvergröße, Typen 1–8: Typ1 150µm, Typ2 75µm, Typ3 45µm, Typ4 38µm, Typ5 25µm, Typ6 15µm, Typ7 11µm, Typ8 8µm</li><li>Daumenregel „5-Kugel-Regel“: Aperturbreite / Ø Pastenpulver ≥ 5</li></ul>
+      <p class="source">Quelle: Folie 10, 29</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Herausforderungen der Miniaturisierung für Schablonendruck und Lotpasten</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2022 (2x)</div>
+    <div class="answer">
+      <ul><li>Kleinere Anschlussraster werden druckbar (Fine-Pitch), da Verklemmen der Partikel in Schablonenöffnungen verhindert wird</li><li>Steigender Oxidgehalt der Lotpaste (bei gleichem Volumen nimmt Partikeloberfläche stark zu) → oft Stickstoffatmosphäre nötig</li><li>Steigende Gefahr von Lötfehlern (Lotkugeln, Brückenbildung), da feine Partikel leicht mit Flussmittel abgeschwemmt werden</li></ul>
+      <p class="source">Quelle: Folie 12</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Kriterien (Gleichung, Grenzwert, Name) für fertigungsgerechte Lotpastenschablonen-Auslegung</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Aspektverhältnis = Aperturbreite B / Schablonendicke D ≥ 1,5</li><li>Flächenverhältnis = Öffnungsfläche / Wandungsfläche ≥ 0,66</li><li>5-Kugel-Regel = Aperturbreite / Ø Pastenpulver ≥ 5</li></ul>
+      <p class="source">Quelle: Folie 28–29</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 typische Fehlerbilder beim Schablonendruck von Lotpaste nennen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2024 (2x)</div>
+    <div class="answer">
+      <ul><li>Brückenbildung</li><li>Transfereffizienz zu klein/zu groß</li><li>Flächenbedruckungsgrad zu klein/zu groß</li><li>(weitere: Depotversatz, MDHV zu groß, Pastenverschmierung, Fremdpartikel)</li></ul>
+      <p class="source">Quelle: Folie 35</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Unter welchen Umständen werden Fixierklebstoffe zusätzlich zur Lotpaste verwendet?</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x)</div>
+    <div class="answer">
+      <ul><li>Bei Mischbestückung (THD+SMD): SMD-Bauteile auf der Wellenlötseite werden in der Prozesskette „SMD-Welle“ vor dem Wenden und Wellenlöten mit Kleber fixiert, da hier keine Lotpaste zur Fixierung vorhanden ist — ohne Fixierung würden die Bauteile beim Wenden/Wellenlöten herunterfallen</li></ul>
+      <p class="source">Quelle: Folie 5, 15</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Rotations-Schrauben-Dispenser skizzieren (mechanischer Aufbau)</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021 (1x)</div>
+    <div class="answer"><p class="missing-note">❌ Im Dispenskapitel ist nur ein „Zeit-Druck gesteuerter Dispenser“ dargestellt (Druckluft, Kolben, Dosierspitze). Ein „Rotations-Schrauben-Dispenser“ kommt in dieser Datei nicht vor — die Foliennummerierung springt an dieser Stelle (38→42), vermutlich fehlen im PDF-Export Original-Folien.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Schablonendruck vs. Dispensen: Mengenleistung/Flexibilität vergleichen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021 (1x, historisch häufig)</div>
+    <div class="answer"><p class="missing-note">❌ Keine explizite Gegenüberstellung. Indirekt ablesbar: Schablonendruck trägt Paste in einem Rakelhub auf alle Pads gleichzeitig auf (höhere Mengenleistung), Dispensen ist ein sequentielles Verfahren, jeder Dot einzeln (höhere Flexibilität, schablonenlos, programmierbar) — aber nicht als expliziter Vergleich formuliert.</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>5. Bestücktechnik – Komponenten und Systeme</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Methode der optischen Zentrierung bei SMT-Bestückung skizzieren</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2021, 2023, 2024 (4x)</div>
+    <div class="answer">
+      <ul><li>Bauelementkamera erfasst Istposition/Lage des Bauelements an der Pipette</li><li>Leiterplattenkamera erfasst Istposition der Leiterplatte (über Referenzmarken)</li><li>beide Istpositionen (x,y,φ) fließen in Bildauswertung im Steuerrechner ein → Korrektur der Sollposition → Korrekturwerte (Δx,Δy,Δφ) werden vor dem Setzen an den Pick&amp;Place-Kopf übergeben</li></ul>
+      <p class="source">Quelle: Folien 42–43</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Möglichkeiten der Bauelementzuführung/-bereitstellung in der SMT + je ein Vorteil</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2023, 2025 (Sept.) (3x)</div>
+    <div class="answer">
+      <ul><li>Flächenmagazin/Tray — Vorteil: sehr flexibel</li><li>Gurt/Tape — Vorteil: hohe Verfügbarkeit</li><li>Schüttgut/Bulkcase — Vorteil: wenig Verpackung</li></ul>
+      <p class="source">Quelle: Folie 40</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">4 Anwendungsgebiete für handgeführte Bestückwerkzeuge nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2020, 2025 (Sept.) (3x)</div>
+    <div class="answer">
+      <ul><li>Kleinstserien</li><li>Prototypenbau</li><li>Exotenbestückung</li><li>Manueller Schaltungsabgleich</li><li>(weitere: Bestückung von Fehlteilen, Reparatur — insg. 6 genannt, 4 auswählen)</li></ul>
+      <p class="source">Quelle: Folie 29</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Positioniergenauigkeit vs. Bestückgenauigkeit erklären</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2022 (2x)</div>
+    <div class="answer">
+      <ul><li>Positioniergenauigkeit: Differenz zwischen Ist- und Sollwert der linearen Achsen bzw. der Bestückpipettenposition — berücksichtigt NICHT die Istposition des Bauelements, Zentrier-/Drehfehler</li><li>Bestückgenauigkeit: Abweichung der tatsächlichen Bestückposition des Bauelements von der Sollposition — berücksichtigt Positionierfehler der Achsen, Drehfehler des Bestückkopfes, Portalverwindung, Vision-Fehler und Zentrierfehler</li></ul>
+      <p class="source">Quelle: Folie 37</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">6 Komponenten eines SMD-Bestückautomaten nennen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2021 (2x)</div>
+    <div class="answer">
+      <ul><li>Portal</li><li>Bestückkopf (mit Vakuumpipetten/Greifern)</li><li>Leiterplattenkamera</li><li>Leiterplattentransportband</li><li>Bauelementzuführmodule (Feeder)</li><li>Bauelementkamera</li></ul>
+      <p class="source">Quelle: Folie 30</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Ursache für unerwartet lange Bestückzeit finden + Lösungsweg vorschlagen (Fallbeispiel)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Pick&amp;Place: jedes Bauelement einzeln von Zuführeinheit abgeholt, optisch zentriert, einzeln gesetzt (sequentiell) — bis 6.000 BE/h, Bestückgenauigkeit bis 22 µm (3σ), Winkelgenauigkeit bis 0,05° (3σ); Vorteile: einfacher Aufbau, hohe Genauigkeit, hohe Flexibilität; Nachteil: geringe Bestückleistung</li><li>Collect&amp;Place: mehrere Bauelemente nacheinander aufgenommen, parallel zentriert, nacheinander bestückt — bis 39.000 BE/h (Einfachportal), Bestückgenauigkeit bis 40 µm (3σ), Winkelgenauigkeit bis 0,5° (3σ); Vorteil: hohe Bestückleistung; Nachteile: komplexer Aufbau, eingeschränktes BE-Spektrum</li></ul>
+      <p class="source">Quelle: Folien 31–34</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Pick&amp;Place vs. Collect&amp;Place: Prinzip, Bestückleistung/-genauigkeit vergleichen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2025 (April) (2x, historisch sehr häufig)</div>
+    <div class="answer"><p class="missing-note">❌ Der Begriff „Logistik“ bzw. „8 r der Logistik“ kommt im Volltext der Datei nicht vor (gezielt geprüft).</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">8 "r" der Logistik nennen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019 (1x)</div>
+    <div class="answer">
+      <ul><li>Beschreibung der unbestückten Leiterplatte (Koordinatensystem/Nullpunkt/Offset, Nutzenteilung)</li><li>Positionen der Bauelemente auf der Leiterplatte (BE, X-Y-Position, Drehlage)</li><li>Anordnung der Bauelemente in der Bereitstellung (welches BE in welchem Zuführmodul)</li><li>Anordnung der Zuführmodule auf der Bereitstellung</li><li>Beschreibung der Bauelemente/Bauteilbibliothek (Größe, elektrische Werte, Aufsetzkraft, Klebermenge)</li></ul>
+      <p class="source">Quelle: Folie 41 — Folie zeigt 5 Kategorien, nicht 6</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">6 Informationen, die im Bestückprogramm enthalten sind</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019 (1x)</div>
+    <div class="answer"><p class="missing-note">❌ Der Begriff „Splicen“/„Splice“ kommt im Volltext der Datei nicht vor (gezielt geprüft).</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Splicen am Bestückautomat: Prinzip + Vorteil</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ Keine Quelle in den vorliegenden Unterlagen gefunden.</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>6. Verbindungstechnik und Löten</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Dampfphasenlöten: je 3 Vor-/Nachteile nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2022, 2023, 2025 (April) (4x)</div>
+    <div class="answer">
+      <ul><li>Vorteile: keine Überhitzung der Bauelemente (T ≤ Siedetemperatur des Mediums), gleichmäßige Temperaturverteilung auf der Baugruppe, 100% Schutzgasatmosphäre durch inerten Dampf</li><li>Nachteile: aufwendiger Temperaturwechsel (Medienwechsel nötig), hoher Aufheizgradient (Ausgleich über Vorheizung nötig), Abkühlung/spezielle Kühlmodule erforderlich</li></ul>
+      <p class="source">Quelle: Folie 40</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Reflow-Temperaturprofil: Zonen im Reflowofen beschriften bzw. Phasen des Reflowprozesses nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2022, 2023 (3x)</div>
+    <div class="answer">
+      <ul><li>4 Reflow-Ofenzonen: Aufheizzone, Haltezone, Peakzone, Abkühlzone</li><li>6 Phasen des Reflowprozesses: (1) Aufschmelzen des Flussmittels, (2) Flussmittelaktivierung, (3) Aufschmelzen der Lotkugeln, (4) Koagulation der Schmelze, (5) Benetzung der Anschlussflächen, (6) Erstarrung der Schmelze</li></ul>
+      <p class="source">Quelle: Folie 27</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Konvektions- vs. Kondensationslöten hinsichtlich Temperaturbelastung Peakzone/-verteilung bewerten</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023, 2025 (April) (2x, historisch VOR 2019 der Klassiker schlechthin)</div>
+    <div class="answer">
+      <ul><li>Konvektionslöten: ΔT in der Peakzone ca. 21 K</li><li>Kondensations-/Dampfphasenlöten: ΔT in der Peakzone nur ca. 2 K (annähernd kein ΔT)</li><li>→ Kondensationslöten hat die deutlich geringere/gleichmäßigere Temperaturbelastung in der Peakzone</li></ul>
+      <p class="source">Quelle: Folien 44–45</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 wichtigste Funktionen von Flussmitteln nennen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2024 (2x)</div>
+    <div class="answer">
+      <ul><li>Verhinderung/Beseitigung der Oxidation</li><li>Verbesserung der Benetzbarkeit</li><li>Verbesserung der Wärmeübertragung</li></ul>
+      <p class="source">Quelle: Folie 9</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">4 mögliche Prinzipien zum Flussmittelauftrag beim Wellenlöten nennen (eines skizzieren)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2025 (Sept.) (2x)</div>
+    <div class="answer">
+      <ul><li>Schaumfluxer, Siebsprühfluxer, Bürstensprühfluxer, Ultraschallsprühfluxer</li><li>Schaumfluxer (Skizze): Druckluft erzeugt über Schaumsiebrohr im Flussmittelbad eine Schaumwelle; Leiterplatte durchfährt beim Transport diese Welle und wird an der Unterseite benetzt — geeignet für Leiterplatten mit durchkontaktierten Bohrungen; Nachteile: Flussmittelmenge nicht beeinflussbar, mögliche Verschmutzung</li></ul>
+      <p class="source">Quelle: Folien 9–10</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Selektivlöten: Einsatzbereich, 2 Verfahren, ein Nachteil</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Einsatzbereich: temperaturkritische Komponenten, räumliche Einschränkung, Nacharbeit</li><li>Verfahren (2 von 4): Laserlöten, Heißgaslöten, Bügellöten, Selektivwellenlöten</li><li>Nachteil Laserlöten: geringe Produktivität, hohe Anlagenkosten</li></ul>
+      <p class="source">Quelle: Folien 48–54</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Doppelwellenlötanlage: Wellen benennen + Aufgabe/Eigenschaften je Welle</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021 (1x, historisch häufig)</div>
+    <div class="answer">
+      <ul><li>Vorwelle: turbulent, höhere Strömungsenergie → sorgt für ausreichende Benetzung mit flüssigem Lot</li><li>Hauptwelle: laminar, beruhigt → korrigiert Lötfehler wie Lotanhäufungen/Brückenbildung</li><li>Lottemperatur ca. 250°C, Lotbehälter 20–200 kg; Einsatz v.a. bei SMD/größeren Bestückdichten</li></ul>
+      <p class="source">Quelle: Folie 17</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>7. Qualitätssicherung und Maschinendiagnose</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Badewannenkurve skizzieren + Ausfallraten der einzelnen Phasen nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2020, 2022, 2024 (4x)</div>
+    <div class="answer">
+      <ul><li>3 Phasen (Weibull-Formparameter b): Frühausfälle (b&lt;1, Ausfallrate nimmt monoton ab, meist verdeckte Fertigungsmängel, z.B. kalte Lötstelle)</li><li>Zufallsausfälle (b=1, Ausfallrate konstant, zufällige Ursache, z.B. unvorhergesehene Belastung)</li><li>Verschleißausfälle (b&gt;1, Ausfallrate wächst monoton, Verschleiß/Alterung, z.B. Rissbildung in Lötstellen)</li><li>Formel: λ(t) = (b/Tc)·(t/Tc)^(b−1)</li></ul>
+      <p class="source">Quelle: Folien 7–10</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Qualität definieren und von Zuverlässigkeit abgrenzen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2020, 2023 (3x, oft mit Badewannenkurve kombiniert)</div>
+    <div class="answer">
+      <ul><li>Qualität (DIN EN ISO 9000:2015): „Grad, in dem ein Satz inhärenter Merkmale eines Objekts Anforderungen erfüllt“ — inhärente Merkmale = kennzeichnende Eigenschaften; Anforderungen = alle Erfordernisse/Erwartungen (explizit oder implizit)</li><li>Zuverlässigkeit = Qualität einer Einheit unter vorgegebenen Anwendungsbedingungen während/nach einer vorgegebenen Zeit (also Qualität + Zeitbezug/Bedingungen)</li></ul>
+      <p class="source">Quelle: Folie 5</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">AOI vs. elektrischer Test (ICT/FT): je erkennbare/nicht erkennbare Fehler; Zusatzinfo aus Schliffbildern</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Visuelle/optische Prüfung (AOI) erkennt v.a. oberflächlich sichtbare Fehler: Bestückfehler, verdrehte/falsch positionierte Bauteile, Lotspritzer, Tombstone, falsche Beschriftung, Benetzungsfehler, fehlende Bauteile</li><li>Elektrische Prüfung (ICT/FPT/FT/ST) prüft elektrische Funktion/Kontaktierung unabhängig vom optischen Erscheinungsbild</li><li>Röntgen (AXI) ergänzt AOI um verdeckte Strukturen (z.B. BGA-Lötstellen, Voids, Leiterbahnriss)</li><li>Schliffbild (zerstörend) zeigt innere Struktur: Lunker, Risse, Gefüge, Schichtdicken — weder optisch noch elektrisch erkennbar</li></ul>
+      <p class="source">Quelle: Folien 19, 21, 23, 25 — Hinweis: keine direkte tabellarische Gegenüberstellung, aus mehreren Folien kombiniert</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">3 typische Fertigungsfehler bei elektrischen Baugruppen + jeweilige Ursache</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2023 (2x)</div>
+    <div class="answer"><p class="missing-note">❌ Fehlerliste vorhanden (Voids, Lotspritzer, Tombstone, Kurzschluss, Benetzungsfehler, offene Lötstelle, fehlendes/verdrehtes Bauteil, Leiterbahnriss u.a., Folien 12/22/24), aber ohne explizit zugeordnete Einzelursache je Fehler.</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">IPC-Klassen (3) nennen: je Anforderung + Produktbeispiel</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Klasse 1 — Allgemeine Elektronikprodukte: oberflächliche Unzulänglichkeiten unbedeutend, Hauptforderung ist Funktion der fertigbestückten Baugruppe; Beispiel: Konsumgüter, Computer/Peripherie</li><li>Klasse 2 — Elektronikprodukte mit höheren Ansprüchen: unterbrechungsfreier Betrieb erwünscht, nicht Voraussetzung; Beispiel: Kommunikationstechnik mit höheren Leistungs-/Lebensdaueransprüchen</li><li>Klasse 3 — Hochleistungselektronik: kontinuierliche, unterbrechungsfreie Funktionssicherheit, Ausfall nicht tolerierbar, harte Einsatzbedingungen (explizites Produktbeispiel auf der Folie nicht genannt)</li></ul>
+      <p class="source">Quelle: Folie 15</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Wichtigstes Einzelmerkmal der Lötstellenbewertung + 3 Kennzeichen einer guten Weichlötverbindung</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2024 (2x)</div>
+    <div class="answer"><p class="missing-note">❌ In der VE07-Datei nicht in dieser Form enthalten — vermutlich in VE06 behandelt, dort aber im Rahmen dieser Recherche nicht explizit gefunden/geprüft worden.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">3 Anforderungen, die Elektronik-Lötstellen erfüllen müssen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2023 (2x)</div>
+    <div class="answer"><p class="missing-note">❌ In der VE07-Datei nicht in dieser Form enthalten — vermutlich in VE06 behandelt, dort aber im Rahmen dieser Recherche nicht explizit gefunden/geprüft worden.</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 zerstörungsfreie Prüfverfahren nennen; Rissbildungserkennung in Lötstellen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021 (1x, historisch VOR 2019 extrem häufig)</div>
+    <div class="answer">
+      <ul><li>CCD-/kamerabasierte optische Inspektion (AOI)</li><li>Laser-Verfahren (3D-Geometrieerfassung, Triangulation)</li><li>Röntgeninspektion (AXI / Mikro-CT)</li><li>(zusätzlich elektrische Prüfung ICT/FPT/FT/ST)</li><li>Rissbildung in Lötstellen wird u.a. durch Röntgeninspektion (2D-AXI zeigt z.B. Leiterbahnriss) oder zerstörend im Schliffbild erkannt</li></ul>
+      <p class="source">Quelle: Folien 19, 21, 23, 25</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>8. Gedruckte Elektronik</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">4 Hauptdruckverfahren nach DIN 16500 skizzieren/beschriften</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2022, 2024 (3x)</div>
+    <div class="answer">
+      <ul><li>Hochdruck (Bildinformation erhöht auf Druckform, z.B. Flexodruck)</li><li>Tiefdruck (Bildstellen als Näpfchen in Druckform, z.B. Gravurdruck)</li><li>Flachdruck (Bild-/Nichtbildstellen auf einer Ebene, z.B. Offsetdruck)</li><li>Durchdruck (Farbe durch Öffnungen einer Vorlage, z.B. Siebdruck)</li></ul>
+      <p class="source">Quelle: Folie 9</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Aerosoljet-Verfahren skizzieren/beschriften (schematischer Aufbau)</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2022, 2024 (3x)</div>
+    <div class="answer">
+      <ul><li>Funktionale Tinte im Vorratsbehälter → pneumatische Aerosol-Erzeugung mit Trägergas (N2)</li><li>→ Virtual Impactor mit Absaugung (überschüssiges Gas/feine Partikel)</li><li>→ verdichtetes Aerosol zur Düse transportiert, Fokussierung durch Hüllgas (N2) in der Düse, Shutter steuert Austritt</li><li>→ Auftrag auf Substrat (hoher Arbeitsabstand &lt; 10 mm); Aerosoltropfen ca. 1–5 µm</li></ul>
+      <p class="source">Quelle: Folie 15</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Leitfähigkeitsklassen von Funktionsmaterialien nennen + Anwendungsbeispiel</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2023, 2025 (Sept.) (3x)</div>
+    <div class="answer">
+      <ul><li>Leitfähige Tinten (hohe el. Leitfähigkeit) — z.B. Leiterbahnen, Bauelementanschlüsse, Antennenstrukturen</li><li>Halbleitende Materialien — z.B. Dioden, Transistoren, Speicher, Photovoltaik</li><li>Isolatoren/dielektrische Materialien (niedrige Leitfähigkeit) — z.B. Leiterbahnkreuzungen, Kondensatoren, Schutz/Versiegelung</li></ul>
+      <p class="source">Quelle: Folie 20–21</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Prinzipien der Energieeinbringung zur Nachbehandlung + Beispiel</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2021 (2x)</div>
+    <div class="answer">
+      <ul><li>Thermisch (Batch-/Durchlaufofen; z.B. Sintern von Silber-Nanopartikeltinte, Leitfähigkeit steigt mit Temperatur)</li><li>Elektrisch (Gleich-/Wechselstrom, nur bei ausreichender Grundleitfähigkeit)</li><li>Photonisch (Licht, gepulstes Licht, UV-Licht, Laser; berührungslos, 3D-geeignet)</li></ul>
+      <p class="source">Quelle: Folie 25</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">2 flexible/hoch-flexible Druckverfahren nennen (eines skizzieren)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Aerosol-Jet und Inkjet (im Gegensatz zu Kontakt-Verfahren wie Gravur-/Flexo-/Offset-/Siebdruck)</li><li>Aerosol-Jet: vektorbasiert, digital, berührungslos; Tropfen 1–5 µm, Virtual Impactor, Hüllgas-Fokussierung, hoher Arbeitsabstand (&lt;10 mm), gut für 3D-Substrate geeignet</li></ul>
+      <p class="source">Quelle: Folien 10, 15, 32</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Piezojet-Verfahren skizzieren + Funktionsweise beschreiben</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2025 (April) (2x)</div>
+    <div class="answer">
+      <ul><li>Piezoaktor an Membran presst Tinte aus Tank durch Düse als Tropfen (Drop-on-Demand)</li><li>CAD-Bilddaten steuern den Druckkopf; Tropfen trifft auf Substrat auf; Druckkopf wird verfahren, um das Druckbild zu erzeugen</li><li>verarbeitbare Viskositäten bis 200.000 mPa·s, Vorschubraten bis 80 mm/s</li></ul>
+      <p class="source">Quelle: Folie 16</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Herausforderungen zuverlässiger gedruckter leitfähiger Strukturen + SMT-Integration auf additiv gefertigten Substraten</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Auf 3D-Substraten: „Verlaufen“ der Tinte durch Gravitation, Kantenflucht beim Drucken über Kanten/Fasen → ungleichmäßige Schichtdicke</li><li>Vor Markteintritt: neue/verbesserte Produktionsprozesse nötig, ESD-Schutz, CE-Konformität</li><li>Für Massenfertigung: verbesserte Leitfähigkeit, geringere Nachbehandlungstemperatur, bessere Langzeitstabilität, kostengünstigere Verfahren, höhere Auflösung, mehr Automatisierung</li><li>SMT-Integration auf additiv gefertigten Substraten: Stacked Dies als Wire-Bond-Ersatz (LED wird in ungesinterte Ag-Nanopartikeltinte bestückt); alternativ gedruckter (Aerosol-Jet) isotroper Leitklebstoff (Tröpfchen ca. 50 µm)</li></ul>
+      <p class="source">Quelle: Folien 30, 33, 34, 41</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Netzdiagramme (Spider-Charts) den Druckverfahren zuordnen: Piezojet, Zeit-Druck-Dispenser, Nanojet, Multinozzle Inkjet</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ In dieser Datei (VE08) keine Netzdiagramme/Spider-Charts vorhanden, die Piezojet, Zeit-Druck-Dispenser, Nanojet und Multinozzle Inkjet vergleichen — diese Begriffe kommen in VE08 gar nicht vor. Vermutlich in einer anderen Vorlesungseinheit behandelt (z.B. VE10).</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>9. Fertigungsverfahren für MEMS und Solarzellen</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 eingesetzte Zelltechnologien zur PV-Modulherstellung nach Wirkungsgrad ordnen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2020, 2025 (Sept.) (3x)</div>
+    <div class="answer">
+      <ul><li>1. Monokristallines Silizium (Modulwirkungsgrad bis ca. 22%)</li><li>2. Polykristallines Silizium (bis ca. 19%)</li><li>3. Amorphes Silizium (ca. 10%)</li></ul>
+      <p class="source">Quelle: Folie 31 (Marktanteile zusätzlich Folie 32: 45,2% / 42,2% / 5,2%)</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Solarzellentyp für ein Rucksack-Ladegerät wählen + mit 2 Stichpunkten begründen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2021, 2023 (3x)</div>
+    <div class="answer">
+      <ul><li>Empfohlen: Dünnschicht-/flexible (z.B. organische) Solarzelle</li><li>Begründung: hohe mechanische Flexibilität (biegsam, robust); geringe Dicke/Gewicht, auch bei schrägem/diffusem Licht einsetzbar</li></ul>
+      <p class="source">Quelle: Folien 50–51 — Anwendungsbeispiel „Rucksack“ selbst nicht wörtlich genannt, aus Zelleigenschaften abgeleitet</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">2 Ansätze zur Wirkungsgraderhöhung polykristalliner Si-Dickschichtmodule</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2023, 2025 (April) (3x)</div>
+    <div class="answer">
+      <ul><li>Texturierung der Waferoberfläche + Antireflexionsschicht (Si3N4, PECVD) → Reduktion Reflexionsverluste auf &lt;4%</li><li>Back-Contact-Zellen (z.B. Metal-Wrap-Through/MWT): rückseitige Kontaktierung verringert frontseitige Abschattung, höherer Wirkungsgrad, geringerer Serienwiderstand</li></ul>
+      <p class="source">Quelle: Folien 37, 46</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">2 Dotierverfahren nennen + typische p-/n-Dotierelemente</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2023 (2x)</div>
+    <div class="answer">
+      <ul><li>Diffusion (POCl3-Diffusion bei 800–900°C): Dotierelemente p-Dotierung = Bor, n-Dotierung = Phosphor</li></ul>
+      <p class="source">Quelle: Folie 36 — Ein zweites Dotierverfahren (z.B. Ionenimplantation) konnte in dieser Datei nicht sicher gefunden werden</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Konzentratorzellen-Technologie skizzieren + je 2 Vor-/Nachteile</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2024 (2x)</div>
+    <div class="answer">
+      <ul><li>Konzentratorzelle = Solarzelle + Optik (Linse/Fresnellinse), bündelt Sonnenlicht auf kleine hocheffiziente Zelle</li><li>Vorteile: Einsparung Halbleiterfläche; Einsatz hocheffizienter Zellen (z.B. Tandemzellen, &gt;40% bei 500-facher Konzentration) → Modulwirkungsgrad &gt;30%</li><li>Nachteile: Sonnenstandsnachführung nötig (zusätzliche Antriebe, Dachmontage ungeeignet); hoher Anteil direkter Sonneneinstrahlung nötig (nur sinnvoll z.B. Afrika, Australien)</li></ul>
+      <p class="source">Quelle: Folie 47</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">2 Greifertypen für Si-Wafer-Handling + Nachteil; Herausforderung dünnerer Zellen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020 (1x, historisch VOR 2019 sehr häufig)</div>
+    <div class="answer">
+      <ul><li>Vakuumgreifer — Nachteil: Zerstörung/Verschmutzung der Oberfläche durch Berührung → Wirkungsgradminderung, teure Vakuumerzeugung</li><li>Berührungslose Greifer (Bernoulli-/Ultraschallgreifer) — Nachteil: langsamere Taktzeiten, Zusatzeinrichtung für Querkräfte nötig</li><li>Herausforderung dünnerer Zellen: Zellen werden immer dünner/bruchempfindlicher (300 µm → &lt;100 µm), starkes Verbiegen möglich</li></ul>
+      <p class="source">Quelle: Folie 41</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Aufbau einer Ionenimplantationsanlage skizzieren/benennen; Einsatzzweck bei Bauelementen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ Ein Komponenten-Diagramm mit Ionenquelle/Massenseparation/Beschleuniger/Ablenkeinheit ist vorhanden, wird in dieser Datei aber explizit als „Ionenätzen“ (physikalisches Trockenätzen) beschrieben, nicht als Ionenimplantationsanlage zur Dotierung (Folie 14) — der gefragte Dotierungs-Kontext ist nicht sicher belegt.</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Deep Reactive Ion Etching: Prozessschritte, zugrundeliegendes Ätzverfahren, Ätzwirkung</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Prozessschritte: Resist auftragen/strukturieren → Ätzen → Passivieren → Ätzen (alternierend) → Strukturtiefe erreicht → Resist/Passivierung strippen</li><li>Zugrundeliegendes Ätzverfahren: reaktives Ionentiefenätzen (Bosch-Prozess), alternierend SF6 (Ätzgas) / C4F8 (Passivierungsgas)</li><li>Ätzwirkung: anisotrop, unabhängig von Kristallorientierung, Aspektverhältnis &gt;30:1, Wandwinkel 90°±2°</li></ul>
+      <p class="source">Quelle: Folie 16</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Alternative Lötverfahren zu IR-/Konvektionslöten für Solarzellen-Stringing + Vor-/Nachteil</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2025 (April) (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Thermoden-Löten — Vorteil: kostengünstig, simultane Herstellung mehrerer Lötstellen; Nachteil: mechanische Belastung der Zellen</li><li>Laserlöten — Vorteil: exakte Prozessführung, lokaler Energieeintrag, berührungslos; Nachteil: hohe Anlagenkosten</li></ul>
+      <p class="source">Quelle: Folie 42</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>10. Flexible &amp; dreidimensionale Schaltungsträger (3D-MID)</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3D-MID-Potenziale nennen: je 3 produktseitige und prozessseitige Vorteile</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2020, 2021, 2022, 2024 (5x — Fixpunkt!)</div>
+    <div class="answer">
+      <ul><li>Produktseitig: Miniaturisierung, Gewichtsreduzierung, Gestaltungsfreiheit, (Funktionsintegration)</li><li>Prozessseitig: Verkürzung der Prozesskette, geringere Teileanzahl, Reduzierung der Fertigungskosten, (höhere Zuverlässigkeit)</li></ul>
+      <p class="source">Quelle: Folie 8</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Prozessschritte der LDS-Technologie + typischer Schichtaufbau der Metallisierung</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2022, 2024, 2025 (Sept.) (4x)</div>
+    <div class="answer">
+      <ul><li>Referenzprozess (4 Stufen): (1) Herstellung Schaltungsträger (1K-Spritzguss), (2) Strukturierung (Laserstrukturierung), (3) Metallisierung (chemische Verfahren), (4) Verbindungsverfahren (3D-AVT)</li><li>Typischer Schichtaufbau der Metallisierung: Cu–Ni–Au</li></ul>
+      <p class="source">Quelle: Folien 9, 11</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Effekte der Laseraktivierung im LDS-Prozess erläutern + verwendeten Lasertyp nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2023, 2025 (April) (3x)</div>
+    <div class="answer">
+      <ul><li>Ablation (Abtragen/Verdampfen der Polymermatrix) und gleichzeitig Aktivierung des laseraktivierbaren Additivs an der Oberfläche → mikroraue Oberfläche mit katalytischen Keimen für die spätere stromlose Metallisierung</li><li>Lasertyp: Nd:YAG-Laser (Wellenlänge λ = 1.064 nm)</li></ul>
+      <p class="source">Quelle: Folien 11–12</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">4 Schritte des Referenzprozesses für spritzgegossene Schaltungsträger (Heißprägen/2K-Spritzguss einordnen)</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2021, 2024 (3x)</div>
+    <div class="answer">
+      <ul><li>4 Prozessstufen: Herstellung Schaltungsträger, Strukturierung, Metallisierung, Verbindungsverfahren</li><li>2K-Spritzguss kombiniert „Herstellung“ + „Strukturierung“ in einem Schritt (2. Komponente strukturiert direkt), danach separate chemische Metallisierung</li><li>Heißprägen kombiniert „Strukturierung“ + „Metallisierung“ in einem Schritt (geprägte Cu-Folie ist gleichzeitig strukturiert und metallisiert)</li></ul>
+      <p class="source">Quelle: Folien 9, 16, 21</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Anwendungen der MID-Technologie nennen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023, 2025 (April) (2x)</div>
+    <div class="answer">
+      <ul><li>Motorradgriffschalter (Automotive, LDS)</li><li>Adaptive Cruise Control Sensor (Automotive, LDS)</li><li>Sonnensensor (Automotive, 2K-Spritzguss)</li><li>(weitere Beispiele auf den Folien: Strömungssensor, ESP-Drucksensor, Rundsteckverbinder, KFZ-Sitzverstellschalter, LED-Leuchte)</li></ul>
+      <p class="source">Quelle: Folien 14, 19, 24</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">LDS vs. 2K-Spritzguss: je 2 Vor-/Nachteile</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2022 (2x)</div>
+    <div class="answer">
+      <ul><li>LDS — Vorteile: hohe Flexibilität (Layoutänderung per Software), Feinstrukturierung möglich (&lt;100 µm); Nachteile: hohe Material-/Investitionskosten, Design-Restriktionen (Abschattungseffekte, begrenzte Dreidimensionalität)</li><li>2K-Spritzguss — Vorteile: hohe 3D-Gestaltungsfreiheit, kurze Prozesskette (hohe Prozesssicherheit); Nachteile: 2K-Werkzeug nötig (hohe Werkzeugkosten), Strukturierung im Spritzguss begrenzt (Feinleiter nur bis ca. 200 µm)</li></ul>
+      <p class="source">Quelle: Folien 13, 18</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">MID-spezifische AVT-Herausforderungen durch Dreidimensionalität (4 nennen)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2020 (2x)</div>
+    <div class="answer">
+      <ul><li>Gängige Verfahren/Anlagen der Flachbaugruppenfertigung nur bedingt für 3D-MID geeignet (z.B. Schablonendruck)</li><li>Flächen mit unterschiedlicher Orientierung/Freiformflächen erfordern senkrechte Ausrichtung der Prozessfläche zur Fügerichtung</li><li>Erforderliche 3D-Fähigkeit der Anlagen für Dispensen und Bauelement-Bestückung</li><li>Erreichbarkeit der Dispenspunkte und Bauelement-Positionen muss berücksichtigt werden</li></ul>
+      <p class="source">Quelle: Folie 30</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>11. Leitkleben als alternatives Verbindungsverfahren</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 technologische Varianten des Leitklebens nennen und skizzieren</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2021, 2023, 2025 (April) (4x — Fixpunkt!)</div>
+    <div class="answer">
+      <ul><li>Isotrop leitende Klebstoffe (ICA): Polymermatrix mit hohem Anteil leitfähiger Füllstoffe (Silberflakes), ca. 100 µm Dicke; Strom fließt über 3D-Perkolationsnetzwerk (x,y,z-Richtung)</li><li>Anisotrop leitende Klebstoffe (ACA): geringerer Partikelanteil mit metallbeschichteten Polymerkugeln, ca. 10 µm Dicke; Leitung nur in z-Richtung (druckkontaktbasiert, ohne Perkolation)</li><li>Ungefüllte Klebstoffe (NCA): kein leitfähiger Füllstoff, ca. 1 µm Dicke; Kontakt entsteht rein durch mechanischen Direktkontakt der Anschlüsse</li></ul>
+      <p class="source">Quelle: Folien 7–9</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Qualitatives Diagramm: Zusammenhang Füllstoffanteil leitfähiger Füllstoffe ↔ elektrische Leitfähigkeit (isotrope Leitklebstoffe)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2025 (Sept.) (2x)</div>
+    <div class="answer">
+      <ul><li>Unterhalb der Perkolationsschwelle: Ag-Partikel liegen vereinzelt vor, kein durchgehender Pfad → Leitfähigkeit nahe null</li><li>An der Perkolationsschwelle: erster durchgehender Partikelpfad bildet sich, Widerstand fällt schlagartig um mehrere Dekaden</li><li>Oberhalb der Perkolationsschwelle: vernetztes Netzwerk mit vielen parallelen Pfaden, Leitfähigkeit steigt weiter und sättigt (industrieller Arbeitsbereich 70–80 Gew.-% Ag)</li><li>Gegenläufig: mechanische Haftfestigkeit sinkt kontinuierlich mit steigendem Füllstoffanteil → Trade-off, optimaler Arbeitsbereich knapp oberhalb der Perkolationsschwelle</li></ul>
+      <p class="source">Quelle: Folie 17</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Verfahren zum Klebstoffauftrag nennen + je charakteristisches Merkmal</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2024 (2x)</div>
+    <div class="answer">
+      <ul><li>Dispensen: Auftrag aus Kartusche über Dosiernadel/Düse (Druck/Zeit/Schnecke/Kolben); Herausforderung: Volumenstreuung, Fadenziehen, Nachtropfen</li><li>Pin Transfer: Stift wird in Klebstoffreservoir getaucht und überträgt definierte Menge; Herausforderung: Dosiermenge schwer regelbar, viskositätsabhängig</li><li>Sieb-/Schablonendruck: Klebstoff wird mit Rakel über Schablone gedrückt; Herausforderung: Schablonenreinigung, Verstopfung kleiner Öffnungen</li></ul>
+      <p class="source">Quelle: Folie 12</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 charakteristische Kenngrößen von Leitklebstoffen, die für die Verarbeitung relevant sind</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x)</div>
+    <div class="answer">
+      <ul><li>Lagerung: hält Klebstoff chemisch/rheologisch stabil (Kühlung/Tiefkühlung nötig)</li><li>Topfzeit: Zeitfenster für zuverlässige Verarbeitung nach Auftauen/Mischen</li><li>Aushärtezyklus: Temperatur-Zeit-Profil der Vernetzung, beeinflusst Festigkeit/Schrumpf/Kontaktwiderstand</li></ul>
+      <p class="source">Quelle: Folie 13</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">3 Arten von Teilwiderständen beim isotropen Leitkleben, die den Gesamtwiderstand beeinflussen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>R_Ag — Widerstand eines Silberpartikels</li><li>R_T — Tunnelwiderstand (Polymer-/Oxid-/Sulfidschichten zwischen Partikeln)</li><li>R_CR — Beschränkungswiderstand (Constriction Resistance, abhängig von Kontaktflächengröße)</li></ul>
+      <p class="source">Quelle: Folie 21</p></div>
+  </div>
+  <div class="qa partial">
+    <div class="qhead">
+      <span class="qtext">Klebeverfahren wählen: Fallbeispiel Hörgerät-Chip (Fine-Pitch) vs. SMD-Widerstand auf 3D-Schaltungsträger</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019 (1x)</div>
+    <div class="answer">
+      <ul><li>Dieses konkrete Fallbeispiel wird in der Datei nicht wörtlich behandelt — folgende Zuordnung ist eine Ableitung aus allgemeinen Prinzipien, KEIN wörtlich belegtes Klausurergebnis:</li><li>Fine-Pitch-Chip (Hörgerät) → anisotrop leitender Klebstoff (ACA): sehr gute Fine-Pitch-Eignung, Pitch ~30 µm erreichbar (vs. ~200 µm bei ICA), kein Risiko lateraler Kontaktbrücken</li><li>SMD-Widerstand auf 3D-Träger (größere, unkritische Kontaktflächen) → eher isotrop leitender Klebstoff (ICA): einfacher Auftrag ähnlich Lotpaste, geeignet für robustere Kontaktflächen</li></ul>
+      <p class="source">⚠️ Teilweise abgeleitet — Folien 7–10, 22–23 (abgeleitet, nicht wörtlich als Fallbeispiel in den Folien enthalten)</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Ungefüllte Klebstoffe: je zwei Vor-/Nachteile</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Vorteile (Beispiele): geringe Materialkosten (keine Füllstoffe), sehr gute Fine-Pitch-Eignung (bleibt elektrisch isolierend)</li><li>Nachteile (Beispiele): elektrischer Kontakt nur durch mechanischen Direktkontakt möglich, sehr begrenztes Bauelementespektrum (hohe Planarität + ausreichend große Kontaktfläche nötig)</li></ul>
+      <p class="source">Quelle: Folie 24</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>12. Aufbau- und Verbindungstechnik der Leistungselektronik</h1>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">2 Alternativen zum klassischen Löten in der Leistungselektronik-AVT nennen + je Vor-/Nachteil</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2020, 2021, 2024, 2025 (Sept.) (5x — Fixpunkt!)</div>
+    <div class="answer">
+      <ul><li>Sintern (Silbersintern) — Vorteil: niedrigere homologe Temperatur, höhere elektrische/thermische Leitfähigkeit, größere mechanische Festigkeit; Nachteil: Reparatur/Nachlöten meist nicht möglich, hoher Materialpreis</li><li>Diffusionslöten (TLPB/TLPS) — Vorteil: hoher Schmelzpunkt, niedrigere homologe Temperatur, hohe Zuverlässigkeit; Nachteil: erhöhte Porenbildung, aufwendige Prozessoptimierung, brüchige IMP, lange Prozesszeit</li></ul>
+      <p class="source">Quelle: Folien 14, 17–20</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Module mit/ohne Grundplatte: je ein Vor-/Nachteil nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2021, 2025 (April) (3x)</div>
+    <div class="answer">
+      <ul><li>Modul MIT Grundplatte: Vorteil — homogenere Wärmeverteilung, robustere Montage; Nachteil — begrenzte Substratgröße, höherer Wärmewiderstand, thermomechanische Spannungen (CTE-Mismatch)</li><li>Modul OHNE Grundplatte: Vorteil — keine Substratgrößenbegrenzung, geringere Kosten, höhere Zuverlässigkeit; Nachteil — erhöhte kurzzeitige thermische Impedanz</li></ul>
+      <p class="source">Quelle: Folie 33</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Alternative hochtemperaturstabile Fügetechnologie zu SnAg-Lot wählen + Begründung via homologer Temperatur (Fallbeispiel)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2024 (2x)</div>
+    <div class="answer">
+      <ul><li>Ag-Sintern statt SnAg(3,5)-Lot</li><li>Homologe Temperatur: TH[%] = T_Einsatztemperatur / T_Schmelzpunkt · 100% (in Kelvin); &lt;40% mechanisch stabil, 40–60% Kriechbereich, &gt;60% Zerstörung der Verbindung</li><li>Beispielrechnung bei 150°C Betriebstemperatur: TH(SnAg) = 86% (kritisch!), TH(Ag-Sinter) = 34% (stabil) → Sinterverbindung deutlich zuverlässiger</li></ul>
+      <p class="source">Quelle: Folie 21</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">4 grundlegende Anforderungen an die AVT für Leistungselektronik</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023 (1x)</div>
+    <div class="answer">
+      <ul><li>Ableitung der Wärme</li><li>Anschlüsse für den Laststrom</li><li>Funktionsisolation</li><li>Mechanischer Schutz</li><li>(weitere genannte: Schutz vor Umwelteinflüssen, Montagevorrichtung, Zuverlässigkeit/Lebensdauer)</li></ul>
+      <p class="source">Quelle: Folie 13</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Bauformtyp anhand eines Bildes bestimmen + Unterscheidungsmerkmale</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Diskrete Bauelemente (TO-Package)</li><li>Module (mit DCB-Isolation, mit/ohne Grundplatte)</li><li>Scheibenzellen</li><li>Unterscheidung nach Strom-/Spannungsbereich, Isolationsschicht, Kühlungsart</li></ul>
+      <p class="source">Quelle: Folien 29–33</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Kraftschlüssiges Ankontaktierungsverfahren nennen + Vor-/Nachteil</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022 (1x, neu)</div>
+    <div class="answer">
+      <ul><li>Druckkontakt (kraftschlüssig) — Vorteil: beidseitige Kühlung möglich, hohe Zuverlässigkeit/Lebensdauer; Nachteil: hohe Anforderungen an Planarität, fehlende Kühlung des Chiprandes</li><li>(Alternativ: Federkontakt — Vorteil: einfache Montage, keine Lötermüdung; Nachteil: geringere Stromfestigkeit)</li></ul>
+      <p class="source">Quelle: Folien 26–27</p></div>
+  </div>
+  </section>
+  <section class="chapter">
+    <h1>13. Future Trends</h1>
+    <p class="chapter-missing-notice">⚠️ Für dieses Kapitel liegt keine eigene Vorlesungsfolien-Datei in den hochgeladenen SS26-Materialien vor (bestätigt durch die Themenübersicht in VE12: „Future Trends“ ist als eigenständiges Kapitel 13 geführt, aber keine entsprechende Datei wurde hochgeladen). Alle folgenden Antworten sind daher <strong>nicht aus offiziellen Unterlagen belegt</strong> — bitte die fehlende VE13-Foliendatei besorgen und nachtragen.</p>
+    
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Zustandsabhängige Reinigung von Druckschablonen (Predictive Maintenance): Konzept + 2 Potenziale</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2021, 2022, 2025 (April) (4x — Fixpunkt!)</div>
+    <div class="answer"><p class="missing-note">❌ Keine VE13-Quelldatei in den Materialien vorhanden.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">OPTAVER-Prozess: Schritte nennen; Abkürzung POW auflösen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2021, 2023 (3x)</div>
+    <div class="answer"><p class="missing-note">❌ Keine VE13-Quelldatei in den Materialien vorhanden.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">3 Vorteile laserbasierter Trocknung gedruckter Leiterzüge</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2022, 2024 (3x)</div>
+    <div class="answer"><p class="missing-note">❌ Keine VE13-Quelldatei in den Materialien vorhanden.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">3 Parameter zur Lebensdaueruntersuchung von Bonddrähten (Designverbesserung Leistungsmodule)</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ Keine VE13-Quelldatei in den Materialien vorhanden.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">3 Potenziale von Machine Learning in der optischen Nachprüfung der SMT-Fertigung</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ Keine VE13-Quelldatei in den Materialien vorhanden.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">3 Potenziale des Hartvergusses in der Leistungselektronik</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ Keine VE13-Quelldatei in den Materialien vorhanden.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">3 Ansätze entlang des Lebenszyklus einer Baugruppe für nachhaltigere Fertigung</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2025 (Sept.) (1x, aktuell)</div>
+    <div class="answer"><p class="missing-note">❌ Keine VE13-Quelldatei in den Materialien vorhanden.</p></div>
+  </div>
+  </section>
+  
+  <section class="chapter">
+    <h1>14. Übungsteil (Gastvorträge externer Firmen)</h1>
+    <p>Der Übungsteil macht historisch ca. 20–28&nbsp;% der Gesamtpunkte aus. Er besteht aus generischen Klassikern (unabhängig von der Firma) und firmenspezifischem Detailwissen aus dem jeweiligen Gastvortrag.</p>
+
+    <h2>14.1 Generische Klassiker (unabhängig von der Firma)</h2>
+    <p class="note">Diese Fragen wurden gezielt in allen 11 durchsuchten VE-Vorlesungsdateien gesucht. Nur zwei (Wellenlöt-Prozessschritte, Vorheizung) konnten in VE06 gefunden werden — die übrigen stammen offenbar aus separaten Übungsfolien/Gastvorträgen, die nicht hochgeladen wurden.</p>
+    
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">5 Faktoren nennen, von denen der Erwärmungsgrad der Leiterplatte abhängt</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2019, 2020, 2022, 2023 (5x — Fixpunkt!)</div>
+    <div class="answer"><p class="missing-note">❌ In VE06 (Löten) nicht enthalten. Es gibt nur vereinzelte Detailhinweise (z.B. „Wärmekapazitäten und Absorptionskoeffizienten der Bauelemente“, Folie 27), die nicht als vollständige 5er-Liste ausreichen.</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">4 Prozessschritte des Wellenlötens nennen</span>
+      <span class="badge t1">SEHR HOCH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2019, 2020, 2021, 2024 (4x)</div>
+    <div class="answer">
+      <ul><li>Fluxen</li><li>Trocknen &amp; Vorheizen</li><li>Wellenlöten</li><li>Abkühlung</li></ul>
+      <p class="source">Quelle: VE06, Folie 8</p></div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Aufgaben der Vorheizung vor dem Wellenlötprozess</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2021, 2022 (2x)</div>
+    <div class="answer">
+      <ul><li>Erfolgt unmittelbar vor dem Löten und dient der besseren Benetzung</li><li>Für ausreichende Benetzung und gute Ausprägung der intermetallischen Phase (IMP) ist eine angepasste Vorheizung notwendig (Heizzonenkonfigurationen: IR, Quarz, Konvektion zur gezielten Temperatureinstellung vor der Welle)</li></ul>
+      <p class="source">Quelle: VE06, Folien 14–15</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Benetzbare vs. nicht benetzbare Düsen beim Selektivwellenlöten (Lotfluss, Benetzungsbreite, Wartung)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023, 2025 (April) (2x)</div>
+    <div class="answer"><p class="missing-note">❌ In VE06 nicht enthalten. Der Begriff „nicht benetzbar“ taucht dort nur in anderem Kontext auf (nicht benetzbare Bauteiloberflächen als Ursache für Kapillardepression, Folie 19) — nicht als Vergleich von Düsentypen.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Herausforderungen der Röntgeninspektion (2 nennen)</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2022, 2025 (April) (2x)</div>
+    <div class="answer"><p class="missing-note">❌ In keiner der 11 durchsuchten VE-Dateien enthalten — vermutlich Inhalt einer separaten Übungsfolie/eines Gastvortrags, der nicht hochgeladen wurde.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Konzept des digitalen Zwillings + Vorteile für Produktdesign/Produktionsplanung/Dienstleistungen</span>
+      <span class="badge t2">MITTEL</span>
+    </div>
+    <div class="qyears">Vorkommen: 2020, 2021, 2022 (3x, seit 2023 aber nicht mehr aufgetaucht)</div>
+    <div class="answer"><p class="missing-note">❌ In keiner der 11 durchsuchten VE-Dateien enthalten — vermutlich Inhalt einer separaten Übungsfolie/eines Gastvortrags, der nicht hochgeladen wurde.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Hauptgründe für die Nutzung von Edge-Geräten im industriellen Umfeld</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ In keiner der 11 durchsuchten VE-Dateien enthalten — vermutlich Inhalt einer separaten Übungsfolie/eines Gastvortrags, der nicht hochgeladen wurde.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">Flowchart zu einem KI-Assistenzsystem zur Reduktion von Pseudofehlern in der Röntgeninspektion vervollständigen</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2023 (1x, neu)</div>
+    <div class="answer"><p class="missing-note">❌ In keiner der 11 durchsuchten VE-Dateien enthalten — vermutlich Inhalt einer separaten Übungsfolie/eines Gastvortrags, der nicht hochgeladen wurde.</p></div>
+  </div>
+  <div class="qa missing">
+    <div class="qhead">
+      <span class="qtext">SMT-Anlagenbilder in die richtige Prozessreihenfolge bringen, benennen und Prozess beschreiben</span>
+      <span class="badge t3">NEU / MÖGLICH</span>
+    </div>
+    <div class="qyears">Vorkommen: 2024 (1x, neu — Vorläufer der "Trainalytics"-Aufgabe 2025)</div>
+    <div class="answer"><p class="missing-note">❌ In keiner der 11 durchsuchten VE-Dateien enthalten — vermutlich Inhalt einer separaten Übungsfolie/eines Gastvortrags, der nicht hochgeladen wurde.</p></div>
+  </div>
+
+    <h2>14.2 Firmenspezifisch für 2026 (aus den hochgeladenen Gastvortrags-Folien)</h2>
+    <p>Von den 5 Firmen aus der Klausur September 2025 (Trainalytics, Siemens EWA, BMK Group, Kronos Mechatronics, SEHO Systems) sind 3 auch 2026 wieder bestätigt: <strong>Trainalytics, Kronos Mechatronics und SEHO Systems</strong>. Die folgenden Antworten stammen direkt aus deren SS26-Vortragsfolien.</p>
+
+    <h3>Kronos Mechatronics — "3D Printed Electronics via Additive Manufacturing"</h3>
+    <p class="assessment high">Einschätzung: SEHR HOCH — die 2026er-Folien zeigen exakt dieselbe Prozesskette wie die Klausurfrage von September 2025.</p>
+    <div class="qa found">
+      <div class="answer">
+        <ul>
+          <li><strong>5-Schritte-Prozesskette:</strong> (1) Pre-Processing (Part Input bzw. Structural Build) → (2) SMD Placement (Machining SMD Pockets, Dispense Adhesive, Place SMD in Pocket, Cure Adhesive) → (3) Print (Machining Print Areas, Print Main Circuit, Print Interconnects mit Adaptive Tool-Path) → (4) Post-Process (Inline Cure/Sinter) → (5) Fertiges 3D-PE-Bauteil</li>
+          <li>Zwei Fertigungsmethoden: Method 1 "Print on existing 3D parts" vs. Method 2 "Fully Additive" (Kombination mit FDM/SLS/SLA)</li>
+          <li>Kontaktlose Drucktechnologien je nach Tintenviskosität: Aerosol-Jet/Nanojet, Single-Nozzle-Inkjet, Piezo-Jet, Needle-/Auger-Dispensing (ca. 10 mPas – 500.000 mPas)</li>
+          <li>Integration von SMD-Bauteilen per Pick&amp;Place plus gedruckten Interconnects</li>
+        </ul>
+        <p class="source">Quelle: PRIDE-UE-2026_Kronos_260615.pdf, Folien 48 &amp; 53 (Process Route Diagramme)</p>
+      </div>
+    </div>
+
+    <h3>Trainalytics — IPC-Normen &amp; Qualitätssicherung</h3>
+    <p class="assessment mid">Einschätzung: NEU — 2026er Fokus unterscheidet sich komplett von der 2025er-Klausurfrage.</p>
+    <div class="qa found">
+      <div class="answer">
+        <ul>
+          <li><strong>3 Produktklassen nach IPC:</strong> Klasse 1 = gewöhnlich, Klasse 2 = zweckbestimmt, Klasse 3 = Hochleistung (Medizin/Militär/Avionik). Die Klassenzuordnung legt der Kunde/Auftraggeber fest.</li>
+          <li><strong>4 Abnahmezustände:</strong> Idealzustand (Zielwert), Abnahmezustand (Zulässig), Fehlerzustand (Unzulässig), Prozessindikator (PI)</li>
+          <li><strong>Benetzung</strong> als wichtigstes Lötstellenmerkmal: Kontaktwinkel, Hohlkehle, keine Entnetzung/keine Brücken</li>
+          <li><strong>"Billboarding":</strong> Seitenlage von Chip-Bauteilen; zulässig wenn Bauteil ≤1206 und Breite ≤ 2× Höhe</li>
+          <li><strong>AOI/SPI im Prozessregelkreis:</strong> Lotpaste drucken → SPI → Bauteile platzieren → Reflowlöten → AOI</li>
+          <li><strong>Deming-Zyklus (PDCA)</strong> zur Einbindung der Inspektion in den Prozess</li>
+          <li><strong>10er-Regel der Fehlerkosten</strong></li>
+        </ul>
+        <p class="source">Quelle: Übung_Trainalytics_2026.pdf (IPC-Normenwerk-Abschnitt, inkl. eingebauter Übungsfragen zu diesen Themen)</p>
+      </div>
+    </div>
+
+    <h3>SEHO Systems — Wellenlöten &amp; Selektivlöten</h3>
+    <p class="assessment mid">Einschätzung: NEU — 2026er Fokus unterscheidet sich komplett von der 2025er-Klausurfrage.</p>
+    <div class="qa found">
+      <div class="answer">
+        <ul>
+          <li>Aufbau Wellenlötanlage: Flussmittelauftrag → Vorheizung → Lötbereich → Kühlung</li>
+          <li>Wellenlöten mit Masken vs. selektives Wellenlöten: Selektiv = geringere thermische Belastung, aber langsamer/wartungsintensiver</li>
+          <li>Fluxertypen: Sprühfluxer vs. Drop-Jet-Fluxer (für Selektivlöten)</li>
+          <li>Vorheizarten: IR-Strahler, Quarzstrahler, Konvektion, "Pulsarstrahler" (Kombination) — Zielwert ca. 100–120°C</li>
+          <li>Selektive Lötdüsen: benetzbare vs. nicht benetzbare Düse; Miniwellenlöten mit Einzeldüse vs. Mehrfachdüsen; Taktzeiten ca. 1–10 min bzw. 20–30 s</li>
+          <li>Randbedingungen: kein Überhitzen/Verschmutzen, stressfreie Verbindung</li>
+        </ul>
+        <p class="source">Quelle: Übungsfolien_Seho_SS2026.pdf</p>
+      </div>
+    </div>
+
+    <h2>14.3 Ausgefallene Firmen 2025 (nicht in diesjährigen Materialien enthalten)</h2>
+    <p>Siemens EWA ("5 Aspekte von CRISP Manufacturing") und BMK Group (Feuchtigkeitsschutz-Maßnahmen) tauchen in den aktuellen SS26-Materialien nicht auf — Antworten dazu konnten nicht recherchiert werden. Prüfe, ob diese Firmen dieses Jahr noch als Exkursion stattfinden.</p>
+  </section>
+  
+  <section class="chapter">
+    <h1>Hinweise zur Nutzung &amp; Methodik</h1>
+    <ul class="strategy">
+      <li>Alle Antworten wurden von KI-Agenten direkt aus den hochgeladenen SS26-Vorlesungsfolien (Ordner <code>Materialien/</code>) extrahiert — mit Angabe der jeweiligen Foliennummer als Quelle.</li>
+      <li><span class="badge t1" style="background:#c9efd1;color:#1f6b34;">GEFUNDEN</span> = Antwort mit Folienquelle belegt. <span class="badge t2" style="background:#fdebb1;color:#7a5a10;">TEILWEISE/ABGELEITET</span> = kein wörtlicher Beleg, aber logische Ableitung aus vorhandenen Prinzipien (klar gekennzeichnet). <span style="color:#b33a3a;font-weight:700;">❌ NICHT GEFUNDEN</span> = keine gesicherte Antwort in den Unterlagen vorhanden — hier <strong>unbedingt zusätzlich in der Vorlesung/im Skript nachschlagen</strong>, bevor du dich darauf verlässt.</li>
+      <li>Besonders betroffen von fehlenden Quellen: Kapitel 13 (Future Trends — komplett keine Quelldatei vorhanden), einzelne Übungsteil-Klassiker (vermutlich separate Gastvortragsfolien, nicht hochgeladen), sowie vereinzelte Einzelfragen in anderen Kapiteln.</li>
+      <li>Diese Datei ersetzt nicht das Lernen aus der Vorlesung selbst — sie ist eine Verdichtung auf die laut Klausur-Historie wahrscheinlichsten Fragen mit bestmöglich belegten Antworten.</li>
+    </ul>
+    <p class="goodluck">Viel Erfolg bei der Klausur!</p>
+  </section>
+
+</body>
+</html>
