@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>PRIDE 2 — Lernleitfaden</title>
+<style>
+  :root {
+    --ink: #1a1f2b;
+    --sub: #5a6474;
+    --line: #dfe3ea;
+    --bg-chapter: #eef1f7;
+    --accent: #2b3a55;
+    --t1-bg: #f8cbcb; --t1-fg: #7a1f1f;
+    --t2-bg: #fdebb1; --t2-fg: #7a5a10;
+    --t3-bg: #c9efd1; --t3-fg: #1f6b34;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Calibri, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+    line-height: 1.5;
+    font-size: 15px;
+  }
+  .titlepage { text-align: center; padding: 40px 0 20px; border-bottom: 3px solid var(--accent); margin-bottom: 32px; }
+  .titlepage h1 { font-size: 34px; margin: 0 0 8px; color: var(--accent); }
+  .titlepage .subtitle { font-size: 18px; color: var(--sub); margin: 0 0 6px; }
+  .titlepage .meta { font-size: 13px; color: var(--sub); font-style: italic; margin-top: 14px; }
+
+  h1 { font-size: 22px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 6px; margin-top: 40px; }
+  h2 { font-size: 18px; color: var(--accent); margin-top: 28px; }
+  h3 { font-size: 15px; color: var(--accent); margin-top: 20px; }
+  section.chapter { page-break-before: always; }
+  section.chapter:first-of-type { page-break-before: auto; }
+
+  p { margin: 8px 0; }
+  ul, ol { margin: 8px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 24px; font-size: 13.5px; }
+  thead th {
+    background: var(--accent); color: #fff; text-align: left;
+    padding: 8px 10px; font-weight: 600;
+  }
+  tbody td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:nth-child(even) { background: #f7f8fb; }
+  td.years { white-space: nowrap; color: var(--sub); font-size: 12.5px; }
+  td.prio { white-space: nowrap; text-align: center; }
+
+  .badge {
+    display: inline-block; padding: 3px 9px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: .02em;
+  }
+  .badge.t1 { background: var(--t1-bg); color: var(--t1-fg); }
+  .badge.t2 { background: var(--t2-bg); color: var(--t2-fg); }
+  .badge.t3 { background: var(--t3-bg); color: var(--t3-fg); }
+
+  .legend-table td:first-child { width: 160px; }
+  .legend-table tbody tr { background: none; }
+
+  .assessment { font-weight: 600; padding: 6px 10px; border-radius: 6px; display: inline-block; margin: 6px 0 10px; }
+  .assessment.high { background: var(--t1-bg); color: var(--t1-fg); }
+  .assessment.mid { background: var(--t2-bg); color: var(--t2-fg); }
+
+  .strategy li { margin: 10px 0; }
+  .goodluck { text-align: center; font-weight: 700; font-size: 18px; margin-top: 26px; }
+
+  .note { font-size: 13px; color: var(--sub); font-style: italic; }
+
+  @media print {
+    body { padding: 0 24px; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+  }
+
+  @page { margin: 16mm 14mm; }
+</style>
+</head>
+<body>
+
+  <div class="titlepage">
+    <h1>PRIDE 2 — Lernleitfaden</h1>
+    <p class="subtitle">Produktionsprozesse in der Elektronik — Klausur-Prognose</p>
+    <p class="note">Basierend auf der Analyse von 43 Altklausuren (2004–2025) und den aktuellen SS26-Vorlesungsmaterialien</p>
+    <p class="meta">Stand: September 2026</p>
+  </div>
+
+  <section>
+    <h2>So funktioniert dieses Dokument</h2>
+    <p>Seit 2019 hat die PRIDE-2-Klausur eine feste Struktur: 13 Themenblöcke aus der Vorlesung (in fester Reihenfolge) + ein Übungsteil mit 3–5 Aufgaben zu Gastvorträgen externer Firmen. Innerhalb jedes Themenblocks rotiert die Klausur zwischen einer begrenzten Anzahl konkreter Fragevarianten. Dieses Dokument listet für jeden Themenblock alle bekannten Fragevarianten der letzten Klausuren (2019–2025), sortiert nach Wahrscheinlichkeit.</p>
+    <p class="note">Wichtiger Hinweis zur Methodik: Die Angaben zu Vorkommen/Häufigkeit stammen aus einer sorgfältigen, aber manuellen Auswertung der Altklausuren-PDFs. Es handelt sich um eine fundierte Einschätzung, keine Garantie — es kann trotzdem eine bisher nie gesehene Frage auftauchen.</p>
+
+    <h2>Prioritäts-Legende</h2>
+    <table class="legend-table">
+      <tbody>
+        <tr><td><span class="badge t1">SEHR HOCH</span></td><td>Frage(-nfamilie) kam 3× oder öfter in den letzten Klausuren (2019–2025) vor, oder ist historisch ein extrem stabiler Fixpunkt. Höchste Lernpriorität.</td></tr>
+        <tr><td><span class="badge t2">MITTEL</span></td><td>Frage kam 2× vor — Teil eines rotierenden Pools innerhalb des Themenblocks. Sollte beherrscht werden, ist aber nicht so sicher dran wie „Sehr hoch".</td></tr>
+        <tr><td><span class="badge t3">NEU / MÖGLICH</span></td><td>Frage kam bisher nur 1× vor (meist 2022–2025). Da diese Themenblöcke aber grundsätzlich jedes Jahr wiederkehren, ist eine (evtl. leicht abgewandelte) Wiederholung möglich, aber unsicherer.</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Empfehlung:</strong> Lerne zuerst alle „SEHR HOCH"-Fragen in allen 13 Themenblöcken vollständig (das allein deckt historisch oft über 50&nbsp;% der Kernpunkte ab), dann „MITTEL", und überfliege „NEU/MÖGLICH" zumindest thematisch.</p>
+  </section>
+
+  
+  <section class="chapter">
+    <h1>1. Entwicklungsumgebung in der Elektronikproduktion</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">CAD/CAM-Verfahrenskette chronologisch nennen (Aufgabe je Schritt bzw. Unterschied zu rein mechanischer Baugruppe)</td>
+      <td class="years">2019, 2021, 2022, 2024 (4x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 grundlegende Aufgaben einer Leiterplatte nennen</td>
+      <td class="years">2020, 2021, 2023, 2024 (4x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Prozessschritte zur Herstellung einer zweiseitig mischbestückten Leiterplatte (THT+SMT) + ein Vorteil THT ggü. SMT</td>
+      <td class="years">2021, 2023, 2025 (Sept.) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">4 Beispiele für Design-Rules beim Leiterplattenlayout nennen</td>
+      <td class="years">2020, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Entwicklungsschritte Produktidee→Produkt (Grafik Elektronik-/Mechanikpfad beschriften) + Datenaustausch</td>
+      <td class="years">2020, 2024 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">4 CAD-Datentypen für Bauelementbibliotheken nennen</td>
+      <td class="years">2019 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Routing-Algorithmus nennen und an Gitter-Grafik durchführen</td>
+      <td class="years">2022 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">2 geometrische Parameter für 3D-Schaltungsträger-Design (zusätzlich zu Design-Rules)</td>
+      <td class="years">2022 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Wesentliche Prozessschritte SMD-Löten: Reflow vs. Welle gegenüberstellen</td>
+      <td class="years">2025 (April) (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>2. Leiterplattenfertigung</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">Substratmaterial-Auswahl bei erhöhter thermischer Belastung: 3 Materialkennwerte nennen + Wirkung beschreiben</td>
+      <td class="years">2019, 2021, 2024 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Herstellungsprozess der Leiterplatte im Subtraktivverfahren in Stichworten</td>
+      <td class="years">2021, 2022, 2025 (April) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Herstellungsprozess der Leiterplatte im Additivverfahren in Stichworten</td>
+      <td class="years">2020, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Galvanische Metallabscheidung skizzieren, Einsatzzweck + Vergleich Abscheidungsraten zu chemischer Abscheidung</td>
+      <td class="years">2022, 2025 (Sept.) (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">2 Substratmaterial-Werkstoffgruppen nennen + je 2 Beispielmaterialien</td>
+      <td class="years">2020 (1x, historisch häufig vor 2019)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Herstellung von Kupferfolien zum Kaschieren skizzieren</td>
+      <td class="years">2020 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Heißverzinnung: relevante Eigenschaften für Folgeprozesse; Vergleich chemische vs. heißverzinnte Zinnpassivierung</td>
+      <td class="years">2023 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Symmetrischer vs. asymmetrischer Lagenaufbau skizzieren; Einfluss auf Maßhaltigkeit beim Löten</td>
+      <td class="years">2024 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Eutektisches Bonden: Prinzip + beispielhafter Ablauf</td>
+      <td class="years">2019 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>3. Bauelementtechnologie</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">Funktionen eines Bauelementgehäuses (Package) nennen (3 oder 5)</td>
+      <td class="years">2020, 2022, 2024 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Kontaktierungsverfahren für Flip-Chip im BGA-Gehäuse nennen/skizzieren</td>
+      <td class="years">2020, 2021, 2025 (April) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Anwendungsfälle für bedrahtete Bauelemente + je ein konkretes Beispiel</td>
+      <td class="years">2020, 2022, 2024 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Bauteilcode interpretieren (z.B. CC0805) — meist gepaart mit obiger Frage</td>
+      <td class="years">2022, 2024 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Prozessschritte der SMT-Montage nennen</td>
+      <td class="years">2020, 2021 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">BGA vs. QFP: Abkürzungen, je 2 Vor-/Nachteile</td>
+      <td class="years">2025 (April) (1x, historisch Klassiker)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">2 Varianten Chip-On-Board-Technologie skizzieren</td>
+      <td class="years">2019 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Gehaust vs. ungehaust: IC für HF-Signal wählen + thermische Anbindung begründen</td>
+      <td class="years">2021 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">7 Fertigungsschritte IC-Packaging ab prozessiertem Wafer nennen</td>
+      <td class="years">2023 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Bauelement-Skizze beschriften (Bauteiltyp erkennen)</td>
+      <td class="years">2023 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">6 Kategorien elektronischer Bauelemente nach Funktion nennen; Abkürzung+Bezeichnung von Bauteilen (z.B. MELF)</td>
+      <td class="years">2025 (Sept.) (1x, aktuell)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>4. Auftrag der Verbindungsmedien</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">Schablonendruckverfahren skizzieren/beschreiben + 3 Prozesseinflussgrößen nennen</td>
+      <td class="years">2020, 2023, 2025 (April) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Lotpastentyp anhand gegebener Apertur-Maße wählen (Daumenregel, Tabelle)</td>
+      <td class="years">2020, 2025 (Sept.) (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Herausforderungen der Miniaturisierung für Schablonendruck und Lotpasten</td>
+      <td class="years">2019, 2022 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Kriterien (Gleichung, Grenzwert, Name) für fertigungsgerechte Lotpastenschablonen-Auslegung</td>
+      <td class="years">2022, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 typische Fehlerbilder beim Schablonendruck von Lotpaste nennen</td>
+      <td class="years">2020, 2024 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Unter welchen Umständen werden Fixierklebstoffe zusätzlich zur Lotpaste verwendet?</td>
+      <td class="years">2024 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Rotations-Schrauben-Dispenser skizzieren (mechanischer Aufbau)</td>
+      <td class="years">2021 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Schablonendruck vs. Dispensen: Mengenleistung/Flexibilität vergleichen</td>
+      <td class="years">2021 (1x, historisch häufig)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>5. Bestücktechnik – Komponenten und Systeme</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">Methode der optischen Zentrierung bei SMT-Bestückung skizzieren</td>
+      <td class="years">2019, 2021, 2023, 2024 (4x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Möglichkeiten der Bauelementzuführung/-bereitstellung in der SMT + je ein Vorteil</td>
+      <td class="years">2020, 2023, 2025 (Sept.) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">4 Anwendungsgebiete für handgeführte Bestückwerkzeuge nennen</td>
+      <td class="years">2019, 2020, 2025 (Sept.) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Positioniergenauigkeit vs. Bestückgenauigkeit erklären</td>
+      <td class="years">2020, 2022 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">6 Komponenten eines SMD-Bestückautomaten nennen</td>
+      <td class="years">2019, 2021 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Ursache für unerwartet lange Bestückzeit finden + Lösungsweg vorschlagen (Fallbeispiel)</td>
+      <td class="years">2021, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Pick&amp;Place vs. Collect&amp;Place: Prinzip, Bestückleistung/-genauigkeit vergleichen</td>
+      <td class="years">2022, 2025 (April) (2x, historisch sehr häufig)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">8 "r" der Logistik nennen</td>
+      <td class="years">2019 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">6 Informationen, die im Bestückprogramm enthalten sind</td>
+      <td class="years">2019 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Splicen am Bestückautomat: Prinzip + Vorteil</td>
+      <td class="years">2022 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>6. Verbindungstechnik und Löten</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">Dampfphasenlöten: je 3 Vor-/Nachteile nennen</td>
+      <td class="years">2020, 2022, 2023, 2025 (April) (4x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Reflow-Temperaturprofil: Zonen im Reflowofen beschriften bzw. Phasen des Reflowprozesses nennen</td>
+      <td class="years">2020, 2022, 2023 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Konvektions- vs. Kondensationslöten hinsichtlich Temperaturbelastung Peakzone/-verteilung bewerten</td>
+      <td class="years">2023, 2025 (April) (2x, historisch VOR 2019 der Klassiker schlechthin)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 wichtigste Funktionen von Flussmitteln nennen</td>
+      <td class="years">2022, 2024 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">4 mögliche Prinzipien zum Flussmittelauftrag beim Wellenlöten nennen (eines skizzieren)</td>
+      <td class="years">2021, 2025 (Sept.) (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Selektivlöten: Einsatzbereich, 2 Verfahren, ein Nachteil</td>
+      <td class="years">2019, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Doppelwellenlötanlage: Wellen benennen + Aufgabe/Eigenschaften je Welle</td>
+      <td class="years">2021 (1x, historisch häufig)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>7. Qualitätssicherung und Maschinendiagnose</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">Badewannenkurve skizzieren + Ausfallraten der einzelnen Phasen nennen</td>
+      <td class="years">2019, 2020, 2022, 2024 (4x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Qualität definieren und von Zuverlässigkeit abgrenzen</td>
+      <td class="years">2019, 2020, 2023 (3x, oft mit Badewannenkurve kombiniert)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">AOI vs. elektrischer Test (ICT/FT): je erkennbare/nicht erkennbare Fehler; Zusatzinfo aus Schliffbildern</td>
+      <td class="years">2020, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 typische Fertigungsfehler bei elektrischen Baugruppen + jeweilige Ursache</td>
+      <td class="years">2021, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">IPC-Klassen (3) nennen: je Anforderung + Produktbeispiel</td>
+      <td class="years">2021, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Wichtigstes Einzelmerkmal der Lötstellenbewertung + 3 Kennzeichen einer guten Weichlötverbindung</td>
+      <td class="years">2022, 2024 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Anforderungen, die Elektronik-Lötstellen erfüllen müssen</td>
+      <td class="years">2022, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 zerstörungsfreie Prüfverfahren nennen; Rissbildungserkennung in Lötstellen</td>
+      <td class="years">2021 (1x, historisch VOR 2019 extrem häufig)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>8. Gedruckte Elektronik</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">4 Hauptdruckverfahren nach DIN 16500 skizzieren/beschriften</td>
+      <td class="years">2020, 2022, 2024 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Aerosoljet-Verfahren skizzieren/beschriften (schematischer Aufbau)</td>
+      <td class="years">2021, 2022, 2024 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Leitfähigkeitsklassen von Funktionsmaterialien nennen + Anwendungsbeispiel</td>
+      <td class="years">2021, 2023, 2025 (Sept.) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Prinzipien der Energieeinbringung zur Nachbehandlung + Beispiel</td>
+      <td class="years">2020, 2021 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">2 flexible/hoch-flexible Druckverfahren nennen (eines skizzieren)</td>
+      <td class="years">2019, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Piezojet-Verfahren skizzieren + Funktionsweise beschreiben</td>
+      <td class="years">2020, 2025 (April) (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Herausforderungen zuverlässiger gedruckter leitfähiger Strukturen + SMT-Integration auf additiv gefertigten Substraten</td>
+      <td class="years">2024 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Netzdiagramme (Spider-Charts) den Druckverfahren zuordnen: Piezojet, Zeit-Druck-Dispenser, Nanojet, Multinozzle Inkjet</td>
+      <td class="years">2023 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>9. Fertigungsverfahren für MEMS und Solarzellen</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">3 eingesetzte Zelltechnologien zur PV-Modulherstellung nach Wirkungsgrad ordnen</td>
+      <td class="years">2019, 2020, 2025 (Sept.) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Solarzellentyp für ein Rucksack-Ladegerät wählen + mit 2 Stichpunkten begründen</td>
+      <td class="years">2019, 2021, 2023 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">2 Ansätze zur Wirkungsgraderhöhung polykristalliner Si-Dickschichtmodule</td>
+      <td class="years">2019, 2023, 2025 (April) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">2 Dotierverfahren nennen + typische p-/n-Dotierelemente</td>
+      <td class="years">2022, 2023 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Konzentratorzellen-Technologie skizzieren + je 2 Vor-/Nachteile</td>
+      <td class="years">2021, 2024 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">2 Greifertypen für Si-Wafer-Handling + Nachteil; Herausforderung dünnerer Zellen</td>
+      <td class="years">2020 (1x, historisch VOR 2019 sehr häufig)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Aufbau einer Ionenimplantationsanlage skizzieren/benennen; Einsatzzweck bei Bauelementen</td>
+      <td class="years">2024 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Deep Reactive Ion Etching: Prozessschritte, zugrundeliegendes Ätzverfahren, Ätzwirkung</td>
+      <td class="years">2022 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Alternative Lötverfahren zu IR-/Konvektionslöten für Solarzellen-Stringing + Vor-/Nachteil</td>
+      <td class="years">2025 (April) (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>10. Flexible &amp; dreidimensionale Schaltungsträger (3D-MID)</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">3D-MID-Potenziale nennen: je 3 produktseitige und prozessseitige Vorteile</td>
+      <td class="years">2019, 2020, 2021, 2022, 2024 (5x — Fixpunkt!)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Prozessschritte der LDS-Technologie + typischer Schichtaufbau der Metallisierung</td>
+      <td class="years">2019, 2022, 2024, 2025 (Sept.) (4x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Effekte der Laseraktivierung im LDS-Prozess erläutern + verwendeten Lasertyp nennen</td>
+      <td class="years">2021, 2023, 2025 (April) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">4 Schritte des Referenzprozesses für spritzgegossene Schaltungsträger (Heißprägen/2K-Spritzguss einordnen)</td>
+      <td class="years">2019, 2021, 2024 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Anwendungen der MID-Technologie nennen</td>
+      <td class="years">2023, 2025 (April) (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">LDS vs. 2K-Spritzguss: je 2 Vor-/Nachteile</td>
+      <td class="years">2020, 2022 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">MID-spezifische AVT-Herausforderungen durch Dreidimensionalität (4 nennen)</td>
+      <td class="years">2019, 2020 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>11. Leitkleben als alternatives Verbindungsverfahren</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">3 technologische Varianten des Leitklebens nennen und skizzieren</td>
+      <td class="years">2020, 2021, 2023, 2025 (April) (4x — Fixpunkt!)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Qualitatives Diagramm: Zusammenhang Füllstoffanteil leitfähiger Füllstoffe ↔ elektrische Leitfähigkeit (isotrope Leitklebstoffe)</td>
+      <td class="years">2019, 2025 (Sept.) (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Verfahren zum Klebstoffauftrag nennen + je charakteristisches Merkmal</td>
+      <td class="years">2022, 2024 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 charakteristische Kenngrößen von Leitklebstoffen, die für die Verarbeitung relevant sind</td>
+      <td class="years">2024 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Arten von Teilwiderständen beim isotropen Leitkleben, die den Gesamtwiderstand beeinflussen</td>
+      <td class="years">2024 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Klebeverfahren wählen: Fallbeispiel Hörgerät-Chip (Fine-Pitch) vs. SMD-Widerstand auf 3D-Schaltungsträger</td>
+      <td class="years">2019 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Ungefüllte Klebstoffe: je zwei Vor-/Nachteile</td>
+      <td class="years">2022 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>12. Aufbau- und Verbindungstechnik der Leistungselektronik</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">2 Alternativen zum klassischen Löten in der Leistungselektronik-AVT nennen + je Vor-/Nachteil</td>
+      <td class="years">2019, 2020, 2021, 2024, 2025 (Sept.) (5x — Fixpunkt!)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Module mit/ohne Grundplatte: je ein Vor-/Nachteil nennen</td>
+      <td class="years">2019, 2021, 2025 (April) (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Alternative hochtemperaturstabile Fügetechnologie zu SnAg-Lot wählen + Begründung via homologer Temperatur (Fallbeispiel)</td>
+      <td class="years">2019, 2024 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">4 grundlegende Anforderungen an die AVT für Leistungselektronik</td>
+      <td class="years">2023 (1x)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Bauformtyp anhand eines Bildes bestimmen + Unterscheidungsmerkmale</td>
+      <td class="years">2023 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Kraftschlüssiges Ankontaktierungsverfahren nennen + Vor-/Nachteil</td>
+      <td class="years">2022 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  <section class="chapter">
+    <h1>13. Future Trends</h1>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">Zustandsabhängige Reinigung von Druckschablonen (Predictive Maintenance): Konzept + 2 Potenziale</td>
+      <td class="years">2020, 2021, 2022, 2025 (April) (4x — Fixpunkt!)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">OPTAVER-Prozess: Schritte nennen; Abkürzung POW auflösen</td>
+      <td class="years">2019, 2021, 2023 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Vorteile laserbasierter Trocknung gedruckter Leiterzüge</td>
+      <td class="years">2020, 2022, 2024 (3x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Parameter zur Lebensdaueruntersuchung von Bonddrähten (Designverbesserung Leistungsmodule)</td>
+      <td class="years">2023 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Potenziale von Machine Learning in der optischen Nachprüfung der SMT-Fertigung</td>
+      <td class="years">2024 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Potenziale des Hartvergusses in der Leistungselektronik</td>
+      <td class="years">2024 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">3 Ansätze entlang des Lebenszyklus einer Baugruppe für nachhaltigere Fertigung</td>
+      <td class="years">2025 (Sept.) (1x, aktuell)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+  </section>
+  
+  <section class="chapter">
+    <h1>14. Übungsteil (Gastvorträge externer Firmen)</h1>
+    <p>Der Übungsteil macht historisch ca. 20–28&nbsp;% der Gesamtpunkte aus (ca. 18–25 von 90 Punkten). Er besteht aus zwei Arten von Fragen: <strong>(A)</strong> generische, firmenunabhängige Klassiker, die unabhängig vom Gastvortrag immer wieder gefragt werden, und <strong>(B)</strong> firmenspezifisches Detailwissen aus dem jeweiligen Gastvortrag.</p>
+
+    <h2>14.1 Generische Klassiker (unabhängig von der Firma)</h2>
+    
+  <table>
+    <thead>
+      <tr><th>Frage / Themenvariante</th><th>Vorkommen (Klausurjahre)</th><th>Priorität</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="q">5 Faktoren nennen, von denen der Erwärmungsgrad der Leiterplatte abhängt</td>
+      <td class="years">2019, 2019, 2020, 2022, 2023 (5x — Fixpunkt!)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">4 Prozessschritte des Wellenlötens nennen</td>
+      <td class="years">2019, 2020, 2021, 2024 (4x)</td>
+      <td class="prio"><span class="badge t1">SEHR HOCH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Aufgaben der Vorheizung vor dem Wellenlötprozess</td>
+      <td class="years">2021, 2022 (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Benetzbare vs. nicht benetzbare Düsen beim Selektivwellenlöten (Lotfluss, Benetzungsbreite, Wartung)</td>
+      <td class="years">2023, 2025 (April) (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Herausforderungen der Röntgeninspektion (2 nennen)</td>
+      <td class="years">2022, 2025 (April) (2x)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Konzept des digitalen Zwillings + Vorteile für Produktdesign/Produktionsplanung/Dienstleistungen</td>
+      <td class="years">2020, 2021, 2022 (3x, seit 2023 aber nicht mehr aufgetaucht)</td>
+      <td class="prio"><span class="badge t2">MITTEL</span></td>
+    </tr>
+    <tr>
+      <td class="q">Hauptgründe für die Nutzung von Edge-Geräten im industriellen Umfeld</td>
+      <td class="years">2024 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">Flowchart zu einem KI-Assistenzsystem zur Reduktion von Pseudofehlern in der Röntgeninspektion vervollständigen</td>
+      <td class="years">2023 (1x, neu)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr>
+    <tr>
+      <td class="q">SMT-Anlagenbilder in die richtige Prozessreihenfolge bringen, benennen und Prozess beschreiben</td>
+      <td class="years">2024 (1x, neu — Vorläufer der "Trainalytics"-Aufgabe 2025)</td>
+      <td class="prio"><span class="badge t3">NEU / MÖGLICH</span></td>
+    </tr></tbody>
+  </table>
+
+    <h2>14.2 Firmenspezifisch für 2026 (bestätigt durch aktuelle SS26-Materialien)</h2>
+    <p>Von den 5 Firmen aus der Klausur September 2025 (Trainalytics, Siemens EWA, BMK Group, Kronos Mechatronics, SEHO Systems) sind 3 auch 2026 wieder als Gastvortrags-Partner bestätigt: <strong>Trainalytics, Kronos Mechatronics und SEHO Systems</strong>. Ihre Vortragsinhalte wurden mit den hochgeladenen SS26-Foliensätzen abgeglichen.</p>
+
+    <h3>Kronos Mechatronics — "3D Printed Electronics via Additive Manufacturing"</h3>
+    <p class="assessment high">Einschätzung: SEHR HOCH — die 2026er-Folien zeigen exakt dieselbe Prozesskette wie die Klausurfrage von September 2025.</p>
+    <ul>
+      <li>5-Schritte-Prozesskette additiv gefertigter mechatronisch integrierter Baugruppen nennen/beschreiben:
+        <ol>
+          <li>Pre-Processing (Part Input bzw. Structural Build)</li>
+          <li>SMD Placement (Machining SMD Pockets, Dispense Adhesive, Place SMD in Pocket, Cure Adhesive)</li>
+          <li>Print (Machining Print Areas, Print Main Circuit, Print Interconnects mit Adaptive Tool-Path)</li>
+          <li>Post-Process (Inline Cure/Sinter)</li>
+          <li>Fertiges 3D-PE-Bauteil</li>
+        </ol>
+      </li>
+      <li>Zwei Fertigungsmethoden unterscheiden: Method&nbsp;1 "Print on existing 3D parts" vs. Method&nbsp;2 "Fully Additive" (Kombination mit FDM/SLS/SLA)</li>
+      <li>Kontaktlose Drucktechnologien je nach Tintenviskosität wählen können: Aerosol-Jet/Nanojet, Single-Nozzle-Inkjet, Piezo-Jet, Needle-/Auger-Dispensing (ca. 10&nbsp;mPas bis 500.000&nbsp;mPas)</li>
+      <li>Integration von SMD-Bauteilen per Pick&amp;Place plus gedruckten Interconnects erklären können</li>
+    </ul>
+
+    <h3>Trainalytics — IPC-Normen &amp; Qualitätssicherung</h3>
+    <p class="assessment mid">Einschätzung: NEU — 2026er Fokus unterscheidet sich komplett von der 2025er-Klausurfrage (damals: SMT-Anlagen benennen). Diese Themen sind daher noch nicht "erprobt", aber sehr wahrscheinlich Basis der 2026er-Frage.</p>
+    <ul>
+      <li>Die 3 Produktklassen nach IPC (1&nbsp;=&nbsp;gewöhnlich, 2&nbsp;=&nbsp;zweckbestimmt, 3&nbsp;=&nbsp;Hochleistung/Medizin/Militär/Avionik) — wer legt die Klassenzuordnung fest? (Antwort: der Kunde/Auftraggeber)</li>
+      <li>Die 4 Abnahmezustände: Idealzustand (Zielwert), Abnahmezustand (Zulässig), Fehlerzustand (Unzulässig), Prozessindikator (PI)</li>
+      <li>Benetzung als wichtigstes Lötstellenmerkmal: Kontaktwinkel, Hohlkehle, keine Entnetzung/keine Brücken</li>
+      <li>"Billboarding" definieren: Seitenlage von Chip-Bauteilen; wann zulässig? (Bauteil ≤1206 und Breite ≤ 2× Höhe)</li>
+      <li>AOI/SPI im Prozessregelkreis: Reihenfolge Lotpaste drucken → SPI → Bauteile platzieren → Reflowlöten → AOI</li>
+      <li>Deming-Zyklus (PDCA) zur Einbindung der Inspektion in den Prozess</li>
+      <li>10er-Regel der Fehlerkosten</li>
+    </ul>
+
+    <h3>SEHO Systems — Wellenlöten &amp; Selektivlöten</h3>
+    <p class="assessment mid">Einschätzung: NEU — 2026er Fokus unterscheidet sich komplett von der 2025er-Klausurfrage (damals: Lotnachfüllung/Legierungsanteile/Verunreinigungen im Lotbad). Diese Themen sind daher noch nicht "erprobt", aber sehr wahrscheinlich Basis der 2026er-Frage.</p>
+    <ul>
+      <li>Aufbau einer Wellenlötanlage: Flussmittelauftrag → Vorheizung → Lötbereich → Kühlung</li>
+      <li>Wellenlöten mit Masken vs. selektives Wellenlöten: Vor-/Nachteile (Selektiv: geringere thermische Belastung, aber langsamer/wartungsintensiver)</li>
+      <li>Fluxertypen: Sprühfluxer vs. Drop-Jet-Fluxer (für Selektivlöten)</li>
+      <li>Vorheizarten: IR-Strahler, Quarzstrahler, Konvektion, "Pulsarstrahler" (Kombination) — Zielwert ca. 100–120&nbsp;°C</li>
+      <li>Selektive Lötdüsen-Varianten: benetzbare vs. nicht benetzbare Düse; Miniwellenlöten mit Einzeldüse vs. Mehrfachdüsen; typische Taktzeiten (ca. 1–10&nbsp;min bzw. 20–30&nbsp;s)</li>
+      <li>Randbedingungen für selektives Löten: kein Überhitzen/Verschmutzen, stressfreie Verbindung</li>
+    </ul>
+
+    <h2>14.3 Ausgefallene Firmen 2025 (nicht in diesjährigen Materialien enthalten)</h2>
+    <p>Siemens EWA (Thema 2025: "5 Aspekte von CRISP Manufacturing") und BMK Group (Thema 2025: Feuchtigkeitsschutz-Maßnahmen für Bauelemente/Leiterplatten/Baugruppen) tauchen in den aktuellen SS26-Materialien nicht auf. Entweder sind sie dieses Jahr nicht dabei, oder du hast die entsprechenden Folien noch nicht hochgeladen — prüfe das sicherheitshalber nochmal, bevor du diese beiden Themen komplett auslässt.</p>
+  </section>
+  
+  <section class="chapter">
+    <h1>Zusammenfassung &amp; Lernstrategie</h1>
+    <ol class="strategy">
+      <li>Beherrsche zuerst alle 13 Kern-Themenblöcke im <span class="badge t1">SEHR HOCH</span>-Bereich vollständig — das ist der stabilste, am besten vorhersagbare Teil der Klausur und macht bei fast jedem Themenblock mindestens eine der real gestellten Fragen aus.</li>
+      <li>Ergänze mit dem <span class="badge t2">MITTEL</span>-Bereich — hier lohnt es sich, zumindest die Grundidee jeder Variante zu kennen, auch wenn du nicht jedes Detail auswendig kannst.</li>
+      <li>Überfliege den <span class="badge t3">NEU / MÖGLICH</span>-Bereich thematisch, damit dich nichts komplett überrascht — auswendig lernen ist hier weniger effizient als bei den anderen beiden Kategorien.</li>
+      <li>Beim Übungsteil (Kap. 14): Lerne <strong>Kronos</strong> zuerst und am gründlichsten (höchste Trefferwahrscheinlichkeit). Bei <strong>Trainalytics</strong> und <strong>SEHO</strong> die oben gelisteten 2026er-Kernfakten durcharbeiten — dein Wissen aus der 2025er-Klausur hilft dort nicht direkt weiter, da sich der Vortragsfokus geändert hat.</li>
+      <li>Kläre vorab (z.&nbsp;B. beim Dozenten/in der Übung), ob Siemens EWA und BMK Group dieses Jahr noch als Exkursion/Gastvortrag stattfinden — falls ja, besorge dir auch deren Materialien.</li>
+    </ol>
+    <p class="goodluck">Viel Erfolg bei der Klausur!</p>
+  </section>
+
+</body>
+</html>
