@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>PRIDE 2 — Firmenteil-Leitfaden</title>
+<style>
+  :root {
+    --ink: #1a1f2b; --sub: #5a6474; --line: #dfe3ea; --accent: #2b3a55;
+    --t1-bg: #f8cbcb; --t1-fg: #7a1f1f;
+    --t2-bg: #fdebb1; --t2-fg: #7a5a10;
+    --t3-bg: #c9efd1; --t3-fg: #1f6b34;
+    --found: #2f8f4e;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Calibri, Helvetica, Arial, sans-serif; color: var(--ink); max-width: 960px; margin: 0 auto; padding: 40px 32px 80px; line-height: 1.5; font-size: 14.5px; }
+  .titlepage { text-align: center; padding: 40px 0 20px; border-bottom: 3px solid var(--accent); margin-bottom: 32px; }
+  .titlepage h1 { font-size: 32px; margin: 0 0 8px; color: var(--accent); }
+  .titlepage .subtitle { font-size: 17px; color: var(--sub); margin: 0 0 6px; }
+  .titlepage .meta { font-size: 13px; color: var(--sub); font-style: italic; margin-top: 14px; }
+
+  h1 { font-size: 21px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 6px; margin-top: 40px; }
+  h2 { font-size: 16.5px; color: var(--accent); margin-top: 24px; }
+  section.chapter { page-break-before: always; }
+  section.chapter:first-of-type { page-break-before: auto; }
+
+  p { margin: 7px 0; }
+  ul, ol { margin: 6px 0; padding-left: 20px; }
+  li { margin: 3px 0; }
+
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 10px; font-weight: 700; letter-spacing: .01em; white-space: nowrap; }
+  .badge.t1 { background: var(--t1-bg); color: var(--t1-fg); }
+  .badge.t2 { background: var(--t2-bg); color: var(--t2-fg); }
+  .badge.t3 { background: var(--t3-bg); color: var(--t3-fg); }
+
+  .qa { border: 1px solid var(--line); border-left: 5px solid var(--found); border-radius: 8px; padding: 12px 16px; margin: 12px 0; page-break-inside: avoid; background: #fafbfd; }
+  .qhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .qtext { font-weight: 700; font-size: 14px; }
+  .answer ul { margin-top: 4px; }
+  .answer li { font-size: 13.5px; }
+  .source { font-size: 11.5px; color: var(--sub); font-style: italic; margin-top: 6px; }
+  .histnote { font-size: 12px; color: #7a5a10; background: #fdebb1; padding: 5px 9px; border-radius: 6px; margin-top: 6px; }
+
+  .statusbox { border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin: 14px 0 20px; font-size: 13.5px; }
+  .statusbox.same { background: #eafaf0; border-color: var(--found); }
+  .statusbox.changed { background: #fff8ea; border-color: #d9a441; }
+  .statusbox p { margin: 4px 0; }
+
+  table.summary-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 16px 0; }
+  table.summary-table th { background: var(--accent); color: #fff; text-align: left; padding: 7px 8px; }
+  table.summary-table td { border-bottom: 1px solid var(--line); padding: 7px 8px; vertical-align: top; }
+  table.summary-table td.good { color: #1f6b34; font-weight: 600; }
+  table.summary-table td.mid { color: #7a5a10; font-weight: 600; }
+  table.summary-table td.bad { color: #7a1f1f; font-weight: 600; }
+
+  .strategy li { margin: 8px 0; font-size: 13.5px; }
+  .goodluck { text-align: center; font-weight: 700; font-size: 17px; margin-top: 22px; }
+  .note { font-size: 12.5px; color: var(--sub); font-style: italic; }
+
+  @media print { body { padding: 0 24px; max-width: 100%; } }
+  @page { margin: 16mm 14mm; }
+</style>
+</head>
+<body>
+
+  <div class="titlepage">
+    <h1>PRIDE 2 — Firmenteil-Leitfaden</h1>
+    <p class="subtitle">Übungsteil: Kronos Mechatronics · Trainalytics · SEHO Systems</p>
+    <p class="note">Basierend auf den vollständigen SS26-Gastvortragsfolien (167 Seiten) und dem Abgleich mit der Klausur-Historie (2011–2025).</p>
+    <p class="meta">Stand: September 2026</p>
+  </div>
+
+  <section>
+    <h2>So funktioniert dieses Dokument</h2>
+    <p>Alle drei Foliensätze wurden vollständig gelesen und gezielt nach eingebauten Übungs-/Quizfragen sowie klar klausurtauglichen Listen durchsucht. Jede Frage ist mit einer Prioritätsstufe versehen:</p>
+    <p><span class="badge t1">SEHR HOCH</span> = eingebaute Übungsfrage im Foliensatz oder exakter inhaltlicher Wiederholer aus 2025 — <span class="badge t2">HOCH</span> = zentrales, klar strukturiertes Thema — <span class="badge t3">NIEDRIG</span> = Randdetail (Firmenkennzahlen o.ä., historisch nie abgefragt).</p>
+  </section>
+
+  
+  <section class="chapter">
+    <h1>Zusammenfassung: Firmen-Historie &amp; Übertragbarkeit</h1>
+    <table class="summary-table">
+      <thead><tr><th>Firma</th><th>Schon mal geprüft?</th><th>Inhalt dieses Jahr</th><th>Übertragbarkeit altes Wissen</th><th>Empfehlung</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Kronos Mechatronics</strong></td>
+          <td>Ja (Sept. 2025)</td>
+          <td>Identisch zum Vorjahr</td>
+          <td class="good">Sehr hoch — 2025er-Wissen direkt nutzbar</td>
+          <td>Prozesskette (5 Schritte, Folie 53) auswendig können, klar von der 4-Schritte-Route (Folie 48) abgrenzen</td>
+        </tr>
+        <tr>
+          <td><strong>Trainalytics</strong></td>
+          <td>Ja (Sept. 2025)</td>
+          <td>Komplett neuer Fokus (IPC-Normen statt Anlagenbenennung)</td>
+          <td class="bad">Gering — altes Wissen hilft kaum</td>
+          <td>Die 6 eingebauten Multiple-Choice-Fragen (Folien 73–75) sind Pflichtstoff — höchste Priorität im ganzen Firmenteil</td>
+        </tr>
+        <tr>
+          <td><strong>SEHO Systems</strong></td>
+          <td>Ja (Sept. 2025)</td>
+          <td>Komplett neuer Fokus (Wellenlöten-Verfahren statt Lotbad-Nachfüllung)</td>
+          <td class="mid">Indirekt hoch — deckt sich mit alten <em>generischen</em> Löten-Klassikern (nicht mit der SEHO-spezifischen 2025er-Frage)</td>
+          <td>Die 4 generischen Klassiker (5 Faktoren, 4 Prozessschritte, Vorheizung, Düsentypen) sind alle enthalten — diese zuerst lernen</td>
+        </tr>
+        <tr>
+          <td><strong>Siemens EWA</strong></td>
+          <td>Ja (Sept. 2025, „5 Aspekte CRISP Manufacturing“)</td>
+          <td colspan="2" class="bad">Keine Unterlagen für 2026 vorhanden — nicht bekannt, ob diese Firma dieses Jahr noch als Exkursion stattfindet</td>
+          <td>Beim Dozenten/in der Übung erfragen, ob diese Firma 2026 noch dabei ist</td>
+        </tr>
+        <tr>
+          <td><strong>BMK Group</strong></td>
+          <td>Ja (Sept. 2025, Feuchtigkeitsschutz-Maßnahmen)</td>
+          <td colspan="2" class="bad">Keine Unterlagen für 2026 vorhanden — nicht bekannt, ob diese Firma dieses Jahr noch als Exkursion stattfindet</td>
+          <td>Beim Dozenten/in der Übung erfragen, ob diese Firma 2026 noch dabei ist</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note">Wichtig: <strong>Keine der drei diesjährigen Firmen ist komplett neu</strong> — alle drei (Kronos, Trainalytics, SEHO) wurden bereits in der Klausur September 2025 geprüft. Neu ist nur der jeweilige inhaltliche Schwerpunkt bei Trainalytics und SEHO. Falls dieses Jahr eine völlig neue, vierte/fünfte Firma als Exkursion hinzukommt, für die keine Unterlagen vorliegen, kann dafür keine Prognose erstellt werden.</p>
+  </section>
+  
+  <section class="chapter">
+    <h1>Kronos Mechatronics — 3D Printed Electronics via Additive Manufacturing</h1>
+    <div class="statusbox same">
+      <p><strong>Firma bereits in einer Klausur geprüft:</strong> Ja — September 2025 (5-Schritte-Prozesskette additiv gefertigter mechatronisch integrierter Baugruppen).</p>
+      <p><strong>Inhalt dieses Jahr:</strong> Identisch! Die 2026er-Folien zeigen exakt dieselbe Prozesskette mit gleicher Modulstruktur, gleichen Bezeichnungen und gleicher Farbcodierung wie vermutlich 2025.</p>
+      <p><strong>Gesamteinschätzung:</strong> Von den drei Firmen mit Abstand die sicherste Vorbereitung — die 2025er-Klausurfrage ist mit sehr hoher Wahrscheinlichkeit (fast) identisch wieder dran.</p>
+    </div>
+    <h2>Priorität 1 — Eingebaute Übungsfragen / exakte Wiederholer aus 2025</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Beschreiben Sie die fünf Schritte der Prozesskette für die vollständig additive Fertigung (Fully Additive Manufacturing) mechatronisch integrierter Baugruppen.</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>1. Structural Build (5-Achsen-AM: Aufbau des 3D-Substrats layer-by-layer, z.B. FFF/SLA/SLS)</li><li>2. Pre-Processing (Machining SMD Pockets, Machining Print Areas, Plasma Clean)</li><li>3. SMD Placement (Dispense Adhesive, Place SMD in Pocket, Cure Adhesive)</li><li>4. Print (Print Main Circuit, Print Interconnects mit Adaptive Tool-Path)</li><li>5. Post-Process (Inline Cure/Sinter [LBS, Laser, UV] bzw. Offline Line Sinter/Oven) → fertiges 3D-PE-Bauteil</li></ul>
+      <p class="source">Quelle: Folie 53 ("Process Route for Fully Additive Manufacturing")</p>
+      <p class="histnote">📌 Achtung: Abgrenzung zu Folie 48 ("Print on existing 3D Substrates") — dort nur 4 Schritte OHNE "Structural Build", da das Trägerteil schon vorgefertigt ist. Nur die volladditive Route hat 5 Schritte!</p>
+    </div>
+  </div>
+    <h2>Priorität 2 — Zentrale Themen &amp; Kernfakten</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die drei/vier Hauptbausteine von 3D Printed Electronics.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Printed Circuit Structures (leitfähige Strukturen auf 3D-Oberfläche)</li><li>SMD Components</li><li>Printed Device (gedrucktes/funktionales Bauteil)</li><li>(bei voller Additivfertigung zusätzlich: Substrate Building/Printing and Embedding)</li></ul>
+      <p class="source">Quelle: Folien 7, 20, 32, 52</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die vier Funktionsbereiche, die mit 3D Printed Electronics realisiert werden können.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Interconnection &amp; Contacting (Leiterbahnen + Pick&amp;Place)</li><li>Actuator &amp; Sensor Technology (Touch-/Temperatursensoren, elektroaktive Polymere)</li><li>RF-Structures (Antennen)</li><li>Heating Structures (PTC-Heizstrukturen, kombinierte Heiz-/Antennenstrukturen)</li></ul>
+      <p class="source">Quelle: Folie 8</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen und erläutern Sie die vier grundlegenden Optionen zur Integration von SMD-Bauteilen in/auf 3D-gedruckte Substrate.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>On surface (SMD wird mit UV-Harz/Kleber auf die Oberfläche geklebt)</li><li>On surface – embedded (Bare-Die wird überdruckt/eingebettet)</li><li>In pocket (Komponente wird in gefräste Tasche eingesetzt und eingebettet)</li><li>In pocket – masked (Komponente in Tasche eingesetzt, dann geflippt/maskiert)</li></ul>
+      <p class="source">Quelle: Folie 34</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie vier Methoden zur elektrischen Kontaktierung von SMT-Bauteilen auf gedruckten Leiterbahnen und die zentrale Herausforderung.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Print Conductive Adhesive (Flip Chip)</li><li>Circuit-Material zur Fixierung des SMD nutzen</li><li>Directly Write Interconnects (3D Chip Connection)</li><li>Wire Bond auf gedruckte Leiterbahn</li><li>Herausforderung: Löten auf 3D-Substraten schwierig — hohe Temperaturen nötig, Substrate oft thermisch instabil, Standard-Lot löst dünne Silberschichten auf</li></ul>
+      <p class="source">Quelle: Folie 33</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie mindestens 5 additive/digitale Druckverfahren für Printed Electronics.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Inkjet Printing</li><li>Extrusion</li><li>Laser Induced Forward Transfer (LIFT)</li><li>Electrohydrodynamic (EHD) Printing</li><li>Aerosol</li><li>Impulse Printing</li><li>Print-then-Plate</li><li>Laser Direct Structuring (LDS)</li></ul>
+      <p class="source">Quelle: Folie 21</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Vergleichen Sie die bei Kronos eingesetzten Druckverfahren (Aerosol/Nanojet, Single Nozzle Inkjet, PiezoJet, Needle/Auger-Dispensing) hinsichtlich Tintenviskosität und erreichbarer Linienbreite.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Aerosol Jet/Nanojet: ~10 mPas, kontinuierliche Zerstäubung, Stand-off mehrere mm, Linienbreite &lt;100 µm</li><li>Single Nozzle Inkjet: ~10 mPas, Drop-on-Demand, kurzer Arbeitsabstand (begrenzte 3D-Fähigkeit), &lt;100 µm</li><li>PiezoJet: 1.000–20.000 mPas, Drop-on-Demand, Stand-off 1–10 mm (gute 3D-Fähigkeit), ab 200–300 µm</li><li>Needle/Auger-Dispensing: 10.000–500.000 mPas, kontinuierliche Extrusion, Stand-off ≈ Düsendurchmesser (begrenzte 3D-Fähigkeit)</li></ul>
+      <p class="source">Quelle: Folien 22–28 (inkl. Radar-Chart Folie 28: 3D Capability, Ink Viscosity Range, Fine Line Capability, Simplicity, Materials Efficiency, Process Speed, Investment Costs)</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie vier Verfahren zur Nachbehandlung (Post-Treatment) gedruckter funktionaler Materialien.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Convection Oven — offline, reifes/zuverlässiges Verfahren</li><li>Focused Halogen/Near-IR — inline-integrierbar, einfach, abhängig von Absorption</li><li>Laser Processing — inline, definierte Wellenlänge, kleiner Spot/hohe Leistungsdichte, hohe Sicherheitsanforderungen</li><li>UV-Curing — inline, variable Wellenlänge, exzellente Steuerbarkeit, UV-Schutz nötig</li></ul>
+      <p class="source">Quelle: Folie 29</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die drei Nutzenkategorien von 3D Printed Electronics und die vier Makrotrends, die die Technologieadoption treiben.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Design Flexibility: Integrated Products, Flexible Form Factor, Miniaturisation, New Functionality</li><li>Economics: Reduced Parts Count, Materials Efficiency, Shorter Process Chains, Automated Manufacture</li><li>Sustainability: Reduced Materials Mix, Additive Manufacture, Simplified Recycling, Onshoring</li><li>Makrotrends: Sustainability, Electromobility, Industrie 4.0 &amp; IoT, Onshoring</li></ul>
+      <p class="source">Quelle: Folie 16</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Welche additiven Fertigungsverfahren für Kunststoffe lassen sich in die 5-Achsen-Plattform integrieren?</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>FFF (FDM), 3DP, SLA, SLS, Binder 3DP, LOM u.a.</li><li>FFF/3DP benötigen kein Druckbett; SLA druckt und härtet gleichzeitig</li><li>Vorteile Integration: breite Materialvielfalt, höherer Durchsatz, Vermeidung von Stützstrukturen durch 5-Achsen-Bearbeitung, integrierte Nachbearbeitung</li></ul>
+      <p class="source">Quelle: Folie 54</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie mindestens 5 Herausforderungen der additiven Fertigung elektronisch-mechatronischer Systeme "from Zero".</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Concepts and Design (Training, Guidelines, Software)</li><li>Multi-Material-Kombinationen (neue Materialien, Langzeitverhalten)</li><li>Sustainable Production and Products</li><li>Technologien für Serienprodukte (Prozessfenster, Hardware)</li><li>First Time Right Production (Prozesskontrolle, Sensorintegration)</li><li>Test, Maintenance and Repair</li><li>Entwicklung von Standards/Testkriterien</li></ul>
+      <p class="source">Quelle: Folie 57</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie mindestens 5 gedruckte elektronische Komponenten und ihre Funktion.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Conductors → Carry Current</li><li>Antenna → Broadcast/Receive</li><li>Sensors → Input</li><li>Heater → Heat Part</li><li>Resistors → Control Current Flow</li><li>Capacitors → Filter/Charge Storage</li><li>(weitere: Inductors, Diodes, Transistors, Memory, Emitters, Power Source)</li></ul>
+      <p class="source">Quelle: Folie 58</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Was ist der Unterschied zwischen "Printed Electronics ON a 3D Substrate" und "Printed Electronics IN a 3D Substrate"?</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>ON: Leiterbahnen/Komponenten werden auf die Oberfläche eines fertigen 3D-Bauteils gedruckt</li><li>IN: elektronische Strukturen werden während des schichtweisen Aufbaus direkt ins Volumen eingebettet</li></ul>
+      <p class="source">Quelle: Folie 6</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Erläutern Sie das Prinzip des 5-Achsen Wire Embedding und die Vorteile gegenüber gedruckten Leiterbahnen.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Präzise Extrusion von Cu-Drähten mit gleichzeitigem Pinning-Prozess (Fused Filament Fabrication); Wickel- oder Start/Stopp-Verfahren mit Schneidwerkzeug</li><li>Vorteile: robuste/flexible Leiter, höhere Strombelastbarkeit, keine Nachbehandlung nötig, einfachere Reinigung, verschiedene Materialien möglich</li></ul>
+      <p class="source">Quelle: Folien 30–31</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Erklären Sie das Problem der Bauteilverschiebung beim Pick&amp;Place in Klebstoff und die Lösung per "Adaptive Toolpath".</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Problem: SMDs können im flüssigen Kleber "schwimmen" und von der Solldesignposition abweichen</li><li>Lösung (4 Schritte): 1) Fiducials lokalisieren, X/Y/Theta korrigieren, 2) Hauptschaltkreis drucken, 3) Kontaktkoordinaten per Bildverarbeitung finden, 4) Interconnects mit angepasstem Werkzeugpfad zum realen Ort drucken</li></ul>
+      <p class="source">Quelle: Folien 37–38</p>
+      
+    </div>
+  </div>
+    <h2>Priorität 3 — Randdetails (niedrige Priorität)</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Firmenkennzahlen Kronos Mechatronics</span>
+      <span class="badge t3">NIEDRIG — Randdetail</span>
+    </div>
+    <div class="answer">
+      <ul><li>Gegründet 2024 in Deutschland (Nürnberg &amp; Hamburg)</li><li>Ursprung: Expertise/Assets von Neotech AMT übernommen</li><li>Branchenfokus: Communication, Defence, Aerospace, Automotive, Medical, Industrial Electronics, Wearables</li></ul>
+      <p class="source">Quelle: Folie 3</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Konkrete Kundenprojekte/Anwendungsbeispiele</span>
+      <span class="badge t3">NIEDRIG — Randdetail</span>
+    </div>
+    <div class="answer">
+      <ul><li>Single Pair Ethernet Connector (Würth Elektronik/Ampere)</li><li>Lead Extraction Unit / "Ultrasonic Camera" (Philips/Ampere)</li><li>Additively Manufactured Spot Light (Ampere/Signify)</li><li>Large Area Printed Electronics (Windscreen-Heizer+Antenne, FeVediS-Projekt)</li><li>Heated Goggles (uvex), gedruckte Antennen (LITE-ON)</li></ul>
+      <p class="source">Quelle: Folien 9–15</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Software-Ökosystem und CAD/CAM-Prozessstrategien</span>
+      <span class="badge t3">NIEDRIG — Randdetail</span>
+    </div>
+    <div class="answer">
+      <ul><li>Aion-5X als zentrale CAD/CAM-Software (mCAD/.stp, eCAD/.gbr, Slicing, API) → .gcode an PLC (B&amp;R Control), Vision-System "Argos"</li><li>6 Prozessstrategien: Contour, Surface, Point, Pick&amp;Place, 2D Alignment, Volume</li></ul>
+      <p class="source">Quelle: Folien 41–46</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Forschungsprojekte</span>
+      <span class="badge t3">NIEDRIG — Randdetail</span>
+    </div>
+    <div class="answer">
+      <ul><li>PE3D/LTCC-Keramik, MEPOFERRI/Ferrit-Bauteile, ADDIRA/Automotive-Radarsensoren, EIC "Live Mirror", Print Project Medical</li></ul>
+      <p class="source">Quelle: Folien 60–66</p>
+      
+    </div>
+  </div>
+  </section>
+  
+  <section class="chapter">
+    <h1>Trainalytics — IPC-Normen &amp; Qualitätssicherung in der Elektronikfertigung</h1>
+    <div class="statusbox changed">
+      <p><strong>Firma bereits in einer Klausur geprüft:</strong> Ja — September 2025 (SMT-Produktionslinie: Anlagen benennen/Reihenfolge).</p>
+      <p><strong>Inhalt dieses Jahr:</strong> Komplett anderer Fokus 2026: IPC-Normenwerk, Produktklassen, Abnahmekategorien, Benetzung, Billboarding — die 2025er-Frage zur reinen Anlagenbenennung kommt in diesem Foliensatz nicht mehr vor (auch wenn Linienschaubilder mit Anlagen weiterhin vorkommen).</p>
+      <p><strong>Gesamteinschätzung:</strong> Der Foliensatz enthält am Ende EXPLIZITE Multiple-Choice-Übungsfragen — diese sind die mit Abstand wahrscheinlichste Vorlage für die echte Klausuraufgabe. Sehr hohe Punktlandung möglich, wenn diese 6 Fragen sicher beherrscht werden.</p>
+    </div>
+    <h2>Priorität 1 — Eingebaute Übungsfragen / exakte Wiederholer aus 2025</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Kennzeichen einer guten Weichlötverbindung sind: (a) steiler Kontaktwinkel / (b) stark glänzende Oberfläche / (c) gute Benetzung / (d) teilweise Bedeckung</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Richtige Antwort: (c) gute Benetzung</li></ul>
+      <p class="source">Quelle: Folie 73 (Original-Multiple-Choice-Folie)</p>
+      <p class="histnote">📌 Deckt sich mit generischem Klassiker "Wichtigstes Einzelmerkmal Lötstellenbewertung + Kennzeichen guter Weichlötverbindung"</p>
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Von Entnetzung spricht man, wenn: (a) Lot verdrängt Flussmittel / (b) Baugruppe trocknet nach Reinigen / (c) Flussmittel trocknet vor Löten / (d) sich das Lot von der benetzten Fläche zurückzieht</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Richtige Antwort: (d) sich das Lot von der benetzten Fläche zurückzieht</li></ul>
+      <p class="source">Quelle: Folie 73 (Original-Multiple-Choice-Folie)</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">In der Elektronikfertigung gibt es drei Produktklassen. Welche Klasse wird für Medizintechnik (lebenserhaltende Systeme) verlangt?</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Richtige Antwort: Klasse 3 (Hochleistungselektronik — kontinuierliche Hochleistung kritisch, lebenserhaltende Systeme, Medizin/Militär/Avionik)</li></ul>
+      <p class="source">Quelle: Folie 74 (Original-Quizfolie, Definition auf Folie 29)</p>
+      <p class="histnote">📌 Entspricht direkt generischem Klassiker "IPC-Klassen (3) mit Anforderung + Produktbeispiel"</p>
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Bei wem liegt die Verantwortung, die Produktklasse anzugeben?</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Richtige Antwort: beim Kunden</li></ul>
+      <p class="source">Quelle: Folie 74 (Original-Quizfolie, auch explizit Folie 29: "Die Verantwortung bzgl. Klassenzuordnung liegt beim Kunden")</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Der Ausdruck "Billboarding" beschreibt:</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Richtige Antwort: Bauteil liegt auf der Seite (nicht Grabstein-Effekt!)</li><li>Zulässigkeitsgrenze: Bauteil ≤1206-Gehäuse und Breite ≤ 2× Höhe (Beispiel Folie 34: R0201-Bauteil in Seitenlage)</li></ul>
+      <p class="source">Quelle: Folie 75 (Original-Quizfolie)</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nach IPC-A-610 gibt es vier Abnahmekategorien. Welche beschreibt den Abnahmezustand?</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Richtige Antwort: Zulässig (Acceptable Condition — Baugruppe nicht perfekt, aber sicher/zuverlässig funktionsfähig)</li><li>Alle 4 Kategorien: Idealzustand, Abnahmezustand/Zulässig, Fehlerzustand/Unzulässig, Prozessindikator</li></ul>
+      <p class="source">Quelle: Folie 75 (Original-Quizfolie, Definition Folie 30)</p>
+      
+    </div>
+  </div>
+    <h2>Priorität 2 — Zentrale Themen &amp; Kernfakten</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Was ist das wichtigste Einzelmerkmal bei der Lötstellenbewertung und wie wird es klassifiziert?</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Benetzung (Wetting) — wörtliches Zitat: "Benetzung ist das wichtigste Einzelmerkmal bei der Lötstellenbewertung"</li><li>Kontaktwinkel &lt;90° oder =90° = zulässig (flacher Winkel); &gt;90° = Nichtbenetzung (unzulässig/Fehler)</li></ul>
+      <p class="source">Quelle: Folien 20, 22, 31</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die drei IPC-Anforderungsklassen mit Definition und Produktbeispiel.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Klasse 1 — Gewöhnliche Elektronikprodukte: Hauptforderung ist, dass die Baugruppe funktioniert</li><li>Klasse 2 — Zweckbestimmte Elektronikprodukte: kontinuierliche Leistung/verlängerte Lebensdauer erwünscht, unkritische Umgebung</li><li>Klasse 3 — Hochleistungselektronik: kontinuierliche Hochleistung kritisch, muss auf Abruf funktionieren, lebenserhaltende Systeme; Beispiele: Medizin, Militär, Avionik, Automobil-Sicherheitssysteme</li></ul>
+      <p class="source">Quelle: Folie 29</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen und erläutern Sie die vier Abnahmekategorien nach IPC-A-610.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Idealzustand (Target Condition, Wunschzustand, nicht immer realisierbar)</li><li>Abnahmezustand/Zulässig (Acceptable Condition)</li><li>Fehlerzustand/Unzulässig (Defect Condition — Form/Einsatzfähigkeit/Funktion nicht sichergestellt)</li><li>Prozessindikator (PI) — kein Fehler, aber Hinweis auf Prozessabweichung, Eingriffsgrenze</li></ul>
+      <p class="source">Quelle: Folie 30</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Wie ist die Normungslandschaft für Elektronik aufgebaut (national/regional/international)?</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Allgemein/Maschinenbau: DIN – CEN – ISO</li><li>Elektrotechnik: DKE/VDE/DIN – CENELEC – IEC</li><li>Telekommunikation: DKE – ETSI – ITU</li><li>Elektronikfertigung speziell: US-Organisation IPC (seit 2025 "Global Electronics Association", GEA)</li></ul>
+      <p class="source">Quelle: Folien 9, 11</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die wichtigsten IPC-Kerndokumente für die Baugruppenfertigung in der richtigen Reihenfolge.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>IPC-2221/7351 (Design/PCB-Pad-Design) → IPC-6012 (Leiterplattenqualifikation) → IPC-A-600 (Acceptability of Printed Boards) → J-STD-001 (Requirements for Soldered Electronic Assemblies) → IPC-A-610 (Acceptability of Electronic Assemblies) → IPC-7711/21 (Rework/Repair)</li></ul>
+      <p class="source">Quelle: Folien 12, 13, 15</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Skizzieren Sie den typischen SMT-Fertigungsablauf mit den zugehörigen Prüfpunkten.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Lotpaste drucken → SPI (Lotpasten-Inspektion) → Bauteile platzieren → Reflowlöten → AOI (Baugruppen-Inspektion)</li><li>erweitert: Schablonendruck, SPI, Bestückungsautomat, Reflow (Konvektion/Dampfphase), AOI, Röntgenprüfung (AXI), Wellen-/Selektivlöten für THT</li></ul>
+      <p class="source">Quelle: Folien 16, 17, 40</p>
+      <p class="histnote">📌 Thematische Überschneidung mit der 2025er-Aufgabe "SMT-Anlagen benennen" — die Linienschaubilder sind weiterhin enthalten, auch wenn der Schwerpunkt 2026 auf IPC-Normen liegt.</p>
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Erläutern Sie die 10er-Regel der Fehlerkosten.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Fehlerkosten steigen exponentiell mit späterer Entdeckung im Prozess (ca. Faktor 10 pro Stufe: Planen/Entwicklung → Beschaffen/Herstellen → Kunde)</li><li>Konsequenz: Qualitätstechniken wie FMEA nutzen, um Fehler früh zu vermeiden statt spät zu entdecken</li></ul>
+      <p class="source">Quelle: Folie 68 (+ Folie 69: "Qualität lässt sich nicht in ein Produkt hineinprüfen!")</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Erläutern Sie den Deming-Zyklus (PDCA) im Kontext der Inspektion.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Plan (Inspektionsaufgabe) → Do (Aufzeichnung/Umsetzung) → Check (Analyse: Statistik, Ursache) → Act (Aktion: Problem beheben)</li><li>Einbindung in den Prozessregelkreis durch geeignete Bewertungskategorien</li></ul>
+      <p class="source">Quelle: Folie 54</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Was sind die drei Elemente der Qualitätskontrolle/Inspektionskette?</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Qualitätsprüfung → Qualitätsüberwachung → Qualitätsregelschleife</li><li>Kette: "keine Inspektion ohne Aufzeichnung — keine Aufzeichnung ohne Analyse — keine Analyse ohne folgende Aktion"</li></ul>
+      <p class="source">Quelle: Folien 50, 53</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Was ist der Unterschied zwischen NSMD- und SMD-Pads?</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>NSMD = Non Solder Mask Defined Pad (Pad freigestellt, Kupferfläche größer als Lötstoppmasken-Öffnung)</li><li>SMD = Solder Mask Defined Pad (Pad durch Lötstoppmaske begrenzt)</li></ul>
+      <p class="source">Quelle: Folien 46, 47</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Wie wird Qualität in diesem Foliensatz definiert?</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>„Qualität ist die Übereinstimmung von Anforderungen und Zustand.“</li><li>Abweichung vom Sollzustand ≠ Einhaltung von Grenzkriterien (Prozessindikator ≠ Fehler)</li></ul>
+      <p class="source">Quelle: Folie 71</p>
+      <p class="histnote">📌 Zuverlässigkeit wird in diesem Foliensatz NICHT separat definiert/abgegrenzt (nur als Trainalytics-Dienstleistung erwähnt) — der generische Klassiker "Qualität vs. Zuverlässigkeit" ist hier nur schwach abgedeckt.</p>
+    </div>
+  </div>
+    <h2>Priorität 3 — Randdetails (niedrige Priorität)</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Firmenkennzahlen Trainalytics</span>
+      <span class="badge t3">NIEDRIG — Randdetail</span>
+    </div>
+    <div class="answer">
+      <ul><li>Gegründet 1.1.2009, IPC-Trainingszentrum seit 1.1.2016, Sitz Lippstadt, ca. 20 Mitarbeiter (Stand 2025)</li><li>Geschäftsfelder: Training / Analytik / Aufbau- und Verbindungstechnik</li></ul>
+      <p class="source">Quelle: Folie 2</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Röntgeninspektion — Beispielbilder</span>
+      <span class="badge t3">NIEDRIG — Randdetail</span>
+    </div>
+    <div class="answer">
+      <ul><li>Microfocus-X-Ray-Beispielbilder von Lötstellen in Schrägansicht</li></ul>
+      <p class="source">Quelle: Folien 42–43</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">DfM-Kostenreduzierungskurve</span>
+      <span class="badge t3">NIEDRIG — Randdetail</span>
+    </div>
+    <div class="answer">
+      <ul><li>Design for Manufacturing: Kosten einer Änderung steigen mit fortschreitender Entwicklungsphase; FMEA möglichst früh einsetzen</li></ul>
+      <p class="source">Quelle: Folie 39</p>
+      
+    </div>
+  </div>
+  </section>
+  
+  <section class="chapter">
+    <h1>SEHO Systems — Wellenlöten &amp; Selektivlöten — Anlagentechnik</h1>
+    <div class="statusbox changed">
+      <p><strong>Firma bereits in einer Klausur geprüft:</strong> Ja — September 2025 (Lotnachfüllung, Legierungsanteile &amp; Verunreinigungen im Lotbad).</p>
+      <p><strong>Inhalt dieses Jahr:</strong> Komplett anderer Fokus 2026: Wellenlöten/Selektivlöten als Verfahren, Maschinenaufbau, Düsentypen, Fluxertypen, Vorheizarten. WICHTIGER FUND: Alle 4 generischen "Löten-Klassiker" aus früheren Klausurjahren sind wortwörtlich und vollständig in diesem Foliensatz enthalten!</p>
+      <p><strong>Gesamteinschätzung:</strong> Sehr hohe Wahrscheinlichkeit, dass dieses Jahr einer oder mehrere der 4 historischen Löten-Klassiker über die SEHO-Aufgabe abgefragt werden — diese waren in den Klausuren 2019–2025 bereits mehrfach (3-5x) Thema, nur eben nicht unter SEHO-Branding. Die stärkste Kombination aus "neu verpackt, aber inhaltlich bekannt".</p>
+    </div>
+    <h2>Priorität 1 — Eingebaute Übungsfragen / exakte Wiederholer aus 2025</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie 5 Faktoren, von denen der Erwärmungsgrad der Leiterplatte beim Löten abhängt.</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Transportgeschwindigkeit/-dauer</li><li>Leistung der Vorheizzonen</li><li>Aufbau der Baugruppen und Bestückung</li><li>Farbe/Oberfläche der Leiterplatte</li><li>Anzahl und Stärke der Innenlagen</li></ul>
+      <p class="source">Quelle: Folie 33</p>
+      <p class="histnote">📌 Generischer Klassiker — kam bereits 5x in Klausuren 2019-2023 vor (bisher ohne Firmenbezug), jetzt erstmals wortwörtlich in SEHO-Folien wiedergefunden.</p>
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die 4 Hauptprozessschritte einer Wellenlötanlage.</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>1. Flussmittelauftrag</li><li>2. Vorheizung</li><li>3. Lötbereich (Lötbad)</li><li>4. Kühlung</li></ul>
+      <p class="source">Quelle: Folien 17, 22/25/34</p>
+      <p class="histnote">📌 Generischer Klassiker — kam bereits 4x in Klausuren 2019-2024 vor, jetzt in SEHO-Folien bestätigt.</p>
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die Aufgaben der Vorheizung vor dem Wellenlötprozess.</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Aktivierung des Flussmittels / Verdampfen des Trägermediums</li><li>Vorwärmen der Baugruppe (Vermeidung von Wärmeschock)</li><li>Verkürzung der Lötprozesszeiten / Erhöhung des Lotdurchstiegs</li></ul>
+      <p class="source">Quelle: Folie 26</p>
+      <p class="histnote">📌 Generischer Klassiker — kam bereits 2x in Klausuren 2021-2022 vor, jetzt in SEHO-Folien bestätigt.</p>
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Beschreiben Sie den Unterschied zwischen benetzbaren und nicht benetzbaren Düsen beim Selektivwellenlöten (Lotfluss, Benetzungsbreite, Wartung).</span>
+      <span class="badge t1">SEHR HOCH — eingebaute Übungsfrage / exakter Wiederholer</span>
+    </div>
+    <div class="answer">
+      <ul><li>Benetzbar: Lot fließt über den gesamten Kegel, beliebig positionierbar, wartungsintensiv (ca. 1×/Schicht), begrenzte Lebensdauer bei bleifreiem Lot, Refresher/Ultraschallreinigung nötig</li><li>Nicht benetzbar: einseitig gerichteter Abfluss, Baugruppe muss ausgerichtet werden, Benetzungsbreite exakt durch Düsenkontur definiert, wartungsfrei, kein Verschleiß auch bei bleifreiem Lot</li></ul>
+      <p class="source">Quelle: Folien 37–38</p>
+      <p class="histnote">📌 Generischer Klassiker — kam bereits 2x in Klausuren 2023 und 2025 (April) vor, jetzt in SEHO-Folien bestätigt.</p>
+    </div>
+  </div>
+    <h2>Priorität 2 — Zentrale Themen &amp; Kernfakten</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Vergleichen Sie Einzeldüse vs. Mehrfachdüsen beim Miniwellenlöten.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Einzeldüse: Bauteile nacheinander gelötet, Taktzeit 1–10 min, hohe Flexibilität, lange Zykluszeit</li><li>Mehrfachdüsen: gleichzeitig/produktspezifisch, Taktzeit 20–30 s, geringe Flexibilität, kurze Zykluszeit</li></ul>
+      <p class="source">Quelle: Folie 36</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die bereitzustellenden Medien und die Randbedingungen beim (selektiven) Wellenlöten.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Bereitzustellen: Flussmittel, Lot, Energie</li><li>Randbedingungen: keine Überhitzung/Verschmutzung, stressfreie Verbindung</li></ul>
+      <p class="source">Quelle: Folie 13</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die 3 Prozessschritte beim THT-Wellenlöten.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Bestücken (meist manuell)</li><li>Fixieren der Beinchen (optional)</li><li>Verlöten durch flüssiges Lot (250–320°C)</li></ul>
+      <p class="source">Quelle: Folie 12</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Vor-/Nachteile Wellenlöten mit Masken.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Vorteile: hoher Durchsatz, geringer Energieverbrauch, gute Durchwärmung</li><li>Nachteile: nicht anwendbar bei geringem SMD-Abstand, hochaufbauenden Komponenten, bestimmten Gehäusen</li></ul>
+      <p class="source">Quelle: Folie 18</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Vor-/Nachteile selektives Wellenlöten.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Vorteile: modularer Aufbau, geeignet für komplexe Leiterplatten/Gehäuse, geringe thermische Beeinflussung</li><li>Nachteile: höherer Wartungsaufwand, komplexere Einrichtung, langsamer (außer bei Multidüsen-Tool)</li></ul>
+      <p class="source">Quelle: Folie 20</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie die 4 Arten der Vorheizung und ihre Eigenschaften.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>IR-Strahler: gleichmäßig, langsam reagierend</li><li>Quarzstrahler: schnell, farbabhängig</li><li>Pulsarstrahler: hohe Energiedichte, kombiniert Vorteile, geeignet bis Losgröße 1</li><li>Konvektion: sehr gleichmäßig, kaum Schatten, gut für wasserbasierte Flussmittel</li></ul>
+      <p class="source">Quelle: Folien 27–32</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Skizzieren Sie die Fertigungsprozesskette einer gemischt bestückten Baugruppe (SMD+THT).</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Eingabe → Lotpastendruck → Prüfstation → SMD-Bestückung → Reflowlöten → Prüfstation → THT-Bestückung → Wellen-/Selektivlöten → Ausgabe</li></ul>
+      <p class="source">Quelle: Folie 10</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie zwei Fluxertypen und ihren Unterschied.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Sprühfluxer: ganzflächig, präziser Sprühstrahl</li><li>Drop-Jet-Fluxer: selektiv, vergleichbar mit 1-Pixel-Inkjet, mit Freiblaseinrichtung</li></ul>
+      <p class="source">Quelle: Folien 23–24</p>
+      
+    </div>
+  </div>
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Nennen Sie Eigenschaften von Selektiv-Lötsystemen.</span>
+      <span class="badge t2">HOCH — zentrales Thema</span>
+    </div>
+    <div class="answer">
+      <ul><li>Hohe Flexibilität, kurze Zykluszeiten, geringe Betriebskosten</li></ul>
+      <p class="source">Quelle: Folie 21</p>
+      
+    </div>
+  </div>
+    <h2>Priorität 3 — Randdetails (niedrige Priorität)</h2>
+    
+  <div class="qa found">
+    <div class="qhead">
+      <span class="qtext">Firmenkennzahlen SEHO Systems</span>
+      <span class="badge t3">NIEDRIG — Randdetail</span>
+    </div>
+    <div class="answer">
+      <ul><li>Gegründet 1976, eigentümergeführt, ca. 250 Mitarbeiter weltweit (230+ in Deutschland)</li><li>Tochtergesellschaften: USA (Erlanger KY), China (Shanghai), Indien (Mysore), Mexiko</li><li>Kundenbranchen: Automotive, EMS, Industry Electronics, Controls, Medical, Telecommunications, Safety</li></ul>
+      <p class="source">Quelle: diverse Folien</p>
+      
+    </div>
+  </div>
+  </section>
+  
+  <section class="chapter">
+    <h1>Lernstrategie für den Firmenteil</h1>
+    <ol class="strategy">
+      <li><strong>Trainalytics zuerst:</strong> Die 6 eingebauten Multiple-Choice-Fragen (Folien 73–75) sind die einzigen im gesamten Firmenteil, die wortwörtlich als Prüfungsfragen im Foliensatz stehen — höchste Punktsicherheit.</li>
+      <li><strong>SEHO als zweites:</strong> Die 4 generischen Löten-Klassiker sind komplett enthalten und historisch mehrfach geprüft — nur diesmal unter neuem Namen.</li>
+      <li><strong>Kronos als Fleißarbeit:</strong> Die 5-Schritte-Prozesskette ist der sicherste Einzeltreffer (nahezu identisch zu 2025), aber der Rest des Foliensatzes ist inhaltlich breiter gestreut — die P2-Liste systematisch durchgehen.</li>
+      <li>Firmenkennzahlen (Gründungsjahr, Mitarbeiterzahl, Standorte) bei allen drei Firmen mit niedrigster Priorität behandeln — wurden in keiner bisherigen PRIDE-2-Klausur abgefragt.</li>
+      <li>Prüfe rechtzeitig, ob Siemens EWA und/oder BMK Group dieses Jahr noch als Exkursion stattfinden — dafür liegen keine aktuellen Unterlagen vor.</li>
+    </ol>
+    <p class="goodluck">Viel Erfolg bei der Klausur!</p>
+  </section>
+
+</body>
+</html>
